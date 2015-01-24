@@ -38,4 +38,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Slim::Engine.set_default_options pretty: true
+
+  config.action_mailer.preview_path = Rails.root.join("spec", "mailers", "previews")
 end

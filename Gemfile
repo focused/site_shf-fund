@@ -13,6 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'ember-rails'
+gem 'quiet_assets'
 
 # Dev
 group :development, :test do
@@ -26,3 +27,9 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  gem 'rspec-rails'
+end
+
+# Views
+gem 'slim-rails'

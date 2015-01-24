@@ -22,13 +22,41 @@ module ShfFund
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Moscow'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.default_locale = :ru
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.generators do |g|
+      g.assets false
+      g.helper false
+      g.serializer false
+      g.view_specs false
+      g.helper_specs false
+      g.controller_specs false
+      g.routing_specs false
+      g.request_specs false
+    end
+
+    config.autoload_paths += %W(
+      #{ config.root }/app/services/concerns
+      #{ config.root }/app/uploaders/concerns
+    )
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: ENV["SMTP_ADDRESS"],
+      port: 2525,
+      user_name: ENV["SMTP_USER_NAME"],
+      password: ENV["SMTP_PASSWORD"],
+      authentication: "plain",
+      enable_starttls_auto: true,
+      # ssl: true,
+      domain: ""
+    }
   end
 end
