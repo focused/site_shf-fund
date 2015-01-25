@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source "https://rails-assets.org"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -14,6 +15,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'ember-rails'
 gem 'quiet_assets'
+gem 'autoprefixer-rails'
+gem 'rails-assets-normalize-css'
 
 # Dev
 group :development, :test do
@@ -33,3 +36,4 @@ end
 
 # Views
 gem 'slim-rails'
+gem 'simple_form', '~> 3.1'
