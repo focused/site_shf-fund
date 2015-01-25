@@ -1,2 +1,17 @@
 footer
+  .social_links
+    a href="" title="ВКонтакте"
+      img src=image_url("social_icon_vkontakte.png")
+    span.spacer
+    a href="" title="Facebook"
+      img src=image_url("social_icon_facebook.png")
+    span.spacer
+    a href="" title="Instagram"
+      img src=image_url("social_icon_instagram.png")
 
+  .links
+    a href=app_web_document_path("terms_and_conditions")
+      = simple_format "Пользовательское\n соглашение", {}, wrapper_tag: "span"
+    span.spacer
+    a href=app_web_document_path("privacy_policy")
+      = simple_format "Соглашение о\n конфиденциальности", {}, wrapper_tag: "span"
