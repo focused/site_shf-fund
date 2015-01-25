@@ -9,7 +9,7 @@ module App::Web
     end
 
     def not_found
-      render file: "public/404"
+      render file: "public/404", layout: false
     end
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get ":path" => "app/web/documents#show"
+  get ":path" => "app/web/documents#show", as: "app_web_document"
 
   root "app/web/documents#show"
 

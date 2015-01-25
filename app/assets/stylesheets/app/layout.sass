@@ -1,0 +1,111 @@
+@import "base"
+
+body
+  +font-main
+  color: $text_dark
+
+a
+  color: $text_dark
+  text-decoration: none
+  &:hover
+    color: $text_medium
+
+main, header, footer
+  width: 940px
+  margin: 0 auto
+
+$pad: 36px
+header
+  position: relative
+  margin-top: $pad
+  overflow: visible
+  .logo
+    font-size: 32px
+    text-transform: uppercase
+    background: $bg_main
+    width: 429px
+    height: 105px
+    padding: 7px 20px
+    a
+      display: block
+      color: $text_light
+      font-size: 32px
+      text-decoration: none
+      width: 300px
+  .menu
+    font-size: 14px
+    position: absolute
+    right: 0
+    top: 0
+    a.item
+      float: left
+      img
+        float: left
+        margin: -13px 3px 0
+    .spacer
+      display: block
+      text-align: center
+      width: 13px
+      float: left
+  form.search
+    $border_color: #b3b2b2
+    position: absolute
+    right: 207px
+    top: 119px - 39px
+    padding: 0 48px 0 0
+    width: 168px
+    border: 1px solid $border_color
+    .input
+      input
+        height: 39px
+        padding: 0 5px
+        font-size: 20px
+        border: none
+        width: 158px
+        &:focus
+          outline: none
+      ::placeholder
+        color: $text_dark
+    .submit
+      position: absolute
+      right: 0
+      top: 0
+      width: 48px
+      height: 38px
+      padding: 0
+      border: none
+      border-left: 1px solid $border_color
+      background: white image_url("search_icon.png") 10px 10px no-repeat
+  .contacts
+    position: absolute
+    right: 0
+    top: 119px - 39px
+    width: 207px
+    text-align: right
+    font-size: 17px
+    word-wrap: nowrap
+    a
+      display: block
+    .email
+      font-size: 19px
+  .catalog_menu
+    margin: 19px 0
+    height: 18px
+    font-size: 17px
+    overflow: hidden
+    padding: 0 0 0 13px
+    a.item
+      float: left
+      &:hover
+        color: $text_medium
+    .spacer
+      display: block
+      text-align: center
+      width: 21px
+      float: left
+  .bread_crumbs
+    height: 26px
+    padding: 9px 13px 0
+    background: #ecf2ed
+footer
+  margin-top: $pad

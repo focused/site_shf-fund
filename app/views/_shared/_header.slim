@@ -1,0 +1,41 @@
+/- if current_user.authenticated?
+header
+  .logo
+    a href=root_path
+      = t(".title")
+
+  .menu
+    a.item href=app_web_document_path("about") О компании
+    span.spacer |
+    a.item href=app_web_document_path("payment_and_delivery") Оплата и доставка
+    span.spacer |
+    a.item href=app_web_document_path("contacts") Контакты
+    span.spacer |
+    a.item href=app_web_document_path("cart")
+      img src=image_url("cart.png")
+      | Корзина (0)
+
+  = simple_form_for :search do |f|
+    = f.input :value, label: false, placeholder: "Поиск"
+    = f.submit "", class: "submit"
+
+  .contacts
+    a.phone href="tel:+74957754846" +7 (495) 775 48 46
+    a.email href="mailto:moscow@mail.ru" moscow@mail.ru
+
+  .catalog_menu
+    a.item href="" Рабочие столы
+    span.spacer |
+    a.item href="" Рабочие кресла
+    span.spacer |
+    a.item href="" Стулья
+    span.spacer |
+    a.item href="" Мягкие группы
+    span.spacer |
+    a.item href="" Шкафы и тумбы
+    span.spacer |
+    a.item href="" Акустические решения
+    span.spacer |
+    a.item href="" Прочее
+
+  = render "_shared/bread_crumbs"
