@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'BirchCTT';
+  src: font_url('BirchCTT.eot?#iefix') format('embedded-opentype'),
+    font_url('BirchCTT.woff') format('woff'),
+    font_url('BirchCTT.ttf')  format('truetype'),
+    font_url('BirchCTT.svg#BirchCTT') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family:'HelveticaNeueCyr-Roman';
+  src: font_url('HelveticaNeueCyr-Roman.eot');
+  src: font_url('HelveticaNeueCyr-Roman.eot?#iefix') format('embedded-opentype'),
+    font_url('HelveticaNeueCyr-Roman.woff') format('woff'),
+    font_url('HelveticaNeueCyr-Roman.ttf') format('truetype'),
+    font_url('HelveticaNeueCyr-Roman.svg#HelveticaNeueCyr-Roman') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-E001;
+}
