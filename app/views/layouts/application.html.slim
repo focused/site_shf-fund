@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    meta charset=Rails.application.config.encoding
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    / meta name="viewport" content="initial-scale=1.0, user-scalable=no, maximum-scale=1"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title = page_title
+
+    / meta name="keywords" content=t('meta.keywords')
+    / meta name="description" content=t('meta.description')
+    / meta name="author" content=t('meta.author')
+
+    /! favicons (stay in public/)
+    /= favicon_link_tag "/favicon.png", rel: "icon", type: "image/x-icon"
+
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+
+    /[if lt IE 9]
+      script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
+
+    = csrf_meta_tags
+    = yield :head
+
+  body class="#{controller_name} #{params[:action]}"
+    = render "_shared/header"
+
+    main role="main"
+      == yield
+
+    = render "_shared/footer"
+
+
