@@ -14,6 +14,9 @@ main, header, footer
   width: 940px
   margin: 0 auto
 
+.clear
+  clear: both
+
 $pad: 36px
 header
   position: relative
@@ -47,17 +50,19 @@ header
       text-align: center
       width: 13px
       float: left
+  $sp_height: 39px
+  $sp_top: 119px - $sp_height
   form.search
     $border_color: #b3b2b2
     position: absolute
     right: 207px
-    top: 119px - 39px
+    top: $sp_top
     padding: 0 48px 0 0
     width: 168px
     border: 1px solid $border_color
     .input
       input
-        height: 39px
+        height: $sp_height
         padding: 0 5px
         font-size: 20px
         border: none
@@ -79,7 +84,7 @@ header
   .contacts
     position: absolute
     right: 0
-    top: 119px - 39px
+    top: $sp_top
     width: 207px
     text-align: right
     font-size: 17px
@@ -106,7 +111,7 @@ header
   .bread_crumbs
     height: 26px
     padding: 9px 13px 0
-    background: #ecf2ed
+    background: $bg_service
 
 main
   .content
@@ -123,6 +128,7 @@ footer
   margin-bottom: $pad
   padding: 40px 0 0
   font-size: 14px
+  height: 48px
   .social_links
     a
       float: left

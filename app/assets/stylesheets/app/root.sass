@@ -1,0 +1,73 @@
+@import "base"
+
+.root
+  .slider
+    padding-bottom: 1px
+    overflow: hidden
+  $dots_h: 35px
+  $h: 286px
+  .slick-slider
+    // opacity: 0.01
+    height: $h
+    margin: 0
+    margin-bottom: 48px
+    color: #b2b2b2
+    $image_w: 472px
+    div
+      +font-special
+      font-size: 33px
+      color: #665b58
+      background: $bg_secondary
+      position: relative
+      img
+        float: left
+      .text
+        float: right
+        text-align: center
+        top: 0
+        right: 0
+        width: 940px - $image_w
+        height: $h
+        line-height: $h
+        p
+          display: inline-block
+          line-height: normal
+          vertical-align: middle
+    .slick-dots
+      bottom: -$dots_h
+      margin: 0
+      float: left
+      width: $image_w
+      li
+        margin: 0 2px
+        button:before
+          color: #b2b2b2
+          opacity: 1
+          font-size: 11px
+        &.slick-active button:before
+          color: #7f7f7f
+          opacity: 1
+
+  .links
+    $h: 38px
+    float: right
+    font-size: 13px
+    font-weight: bold
+    text-transform: uppercase
+    margin: -$dots_h 0 0
+    a
+      $v_pad: 12px
+      float: left
+      display: block
+      color: $text_light
+      text-align: center
+      height: $h - $v_pad
+      min-width: 132px
+      padding: $v_pad 7px 0
+      background: $bg_main
+    .spacer
+      float: left
+      display: block
+      width: 7px
+      height: $h
+

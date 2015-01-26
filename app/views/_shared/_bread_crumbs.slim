@@ -1,4 +1,5 @@
-.bread_crumbs
-  a href=root_path Главная
-  = " / "
-  span О компании
+- unless request.fullpath == "/"
+  .bread_crumbs
+    a href=root_path Главная
+    = " / "
+    span О компании

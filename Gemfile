@@ -16,6 +16,8 @@ gem 'jquery-rails'
 gem 'ember-rails'
 gem 'quiet_assets'
 gem 'autoprefixer-rails'
+gem "slick_rails"
+
 gem 'rails-assets-normalize-css'
 
 # Dev
