@@ -50,4 +50,5 @@ gem "mini_magick"
 
 # UI
 gem "ckeditor", git: "git://github.com/galetahub/ckeditor.git"
+gem 'responders', '~> 2.0'
 

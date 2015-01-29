@@ -158,6 +158,8 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.1)
+    responders (2.1.0)
+      railties (>= 4.2.0, < 5)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -237,6 +239,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.0)
   rails-assets-normalize-css
+  responders (~> 2.0)
   rspec-rails
   sass-rails (~> 5.0)
   simple_form (~> 3.1)
