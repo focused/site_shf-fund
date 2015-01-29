@@ -1,4 +1,8 @@
 ru:
+  activerecord:
+    models:
+      "app/web/document": "Web-документ (страница)"
+
   app:
     name: "Furniture Fund"
 

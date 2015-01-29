@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-source "https://rails-assets.org"
+source 'https://rails-assets.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -13,7 +13,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'ember-rails'
 gem 'quiet_assets'
 gem 'autoprefixer-rails'
 gem "slick_rails"
@@ -30,6 +29,8 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'awesome_print'
 end
 
 group :test do
@@ -39,3 +40,14 @@ end
 # Views
 gem 'slim-rails'
 gem 'simple_form', '~> 3.1'
+
+# Admin
+gem 'upmin-admin', github: 'upmin/upmin-admin-ruby', ref: '86d2382'
+
+# Media
+gem "carrierwave"
+gem "mini_magick"
+
+# UI
+gem "ckeditor", git: "git://github.com/galetahub/ckeditor.git"
+
