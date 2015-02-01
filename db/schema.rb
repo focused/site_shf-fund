@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127231917) do
+ActiveRecord::Schema.define(version: 20150201181559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,14 +32,67 @@ ActiveRecord::Schema.define(version: 20150127231917) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
-  create_table "web_documents", force: :cascade do |t|
-    t.string   "name"
+  create_table "documents", force: :cascade do |t|
+    t.string   "name",                     null: false
     t.string   "path",       default: "/", null: false
     t.text     "content",    default: "",  null: false
+    t.integer  "position",   default: 0,   null: false
+    t.string   "handler"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  add_index "web_documents", ["path"], name: "index_web_documents_on_path", unique: true, using: :btree
+  add_index "documents", ["path", "handler"], name: "index_documents_on_path_and_handler", unique: true, using: :btree
 
+  create_table "product_categories", force: :cascade do |t|
+    t.integer  "product_category_id"
+    t.string   "name",                              null: false
+    t.string   "path",                default: "/", null: false
+    t.integer  "position",            default: 0,   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "product_categories", ["product_category_id", "path"], name: "index_product_categories_on_product_category_id_and_path", unique: true, using: :btree
+  add_index "product_categories", ["product_category_id"], name: "index_product_categories_on_product_category_id", using: :btree
+
+  create_table "product_couples", id: false, force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "couple_id"
+  end
+
+  add_index "product_couples", ["product_id", "couple_id"], name: "index_product_couples_on_product_id_and_couple_id", unique: true, using: :btree
+
+  create_table "product_photos", force: :cascade do |t|
+    t.integer "product_id"
+    t.string  "src"
+    t.integer "position",   default: 0, null: false
+  end
+
+  add_index "product_photos", ["product_id"], name: "index_product_photos_on_product_id", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.integer  "product_category_id"
+    t.integer  "position",                                    default: 0,   null: false
+    t.string   "name",                                                      null: false
+    t.string   "path_id",                                                   null: false
+    t.string   "factory",                                     default: "",  null: false
+    t.string   "factory_url",                                 default: "",  null: false
+    t.string   "factory_country",                             default: "",  null: false
+    t.string   "description",                                 default: "",  null: false
+    t.string   "fabric",                                      default: "",  null: false
+    t.string   "size",                                        default: "",  null: false
+    t.decimal  "wear_pct",            precision: 4, scale: 2, default: 0.0
+    t.string   "code",                                        default: "",  null: false
+    t.decimal  "price",               precision: 8, scale: 2
+    t.string   "warranty",                                    default: "",  null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+  end
+
+  add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
+
+  add_foreign_key "product_categories", "product_categories"
+  add_foreign_key "product_photos", "products"
+  add_foreign_key "products", "product_categories"
 end
