@@ -97,16 +97,36 @@ header
     margin: 19px 0
     height: 18px
     font-size: 17px
-    overflow: hidden
-    padding: 0 0 0 13px
-    a.item
+    // overflow: hidden
+    padding: 0
+    .wrapper
+      $pad: 8px
+      position: relative
+      z-index: 99999
+      min-height: 19px
       float: left
-      &:hover
-        color: $text_medium
+      padding: 0 $pad
+      a.item
+        &:hover
+          color: $text_medium
+      .submenu
+        display: none
+        position: absolute
+        left: 0
+        padding: 2px $pad
+        background: white
+        box-shadow: 4px 10px 15px rgba(0,0,0,0.2)
+        .item
+          display: block
+          padding: 5px 0
+          margin: 3px 0
+          min-width: 120px
+          white-space: nowrap
+          font-size: 15px
     .spacer
       display: block
       text-align: center
-      width: 21px
+      width: 4px
       float: left
   .bread_crumbs
     height: 26px

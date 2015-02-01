@@ -3,3 +3,4 @@
 
 //= require slick
 
+//= require catalog_menu
