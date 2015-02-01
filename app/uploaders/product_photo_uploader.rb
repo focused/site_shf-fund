@@ -19,6 +19,10 @@ class ProductPhotoUploader < ApplicationUploader
     process resize_to_fit: [76, 107]
   end
 
+  version :thumb do
+    process resize_to_fill: [64, 64]
+  end
+
   def extension_white_list
     %w(jpg jpeg gif png)
   end

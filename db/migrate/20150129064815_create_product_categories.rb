@@ -4,7 +4,7 @@ class CreateProductCategories < ActiveRecord::Migration
       t.references :product_category, index: true
       t.string :name, null: false
       t.string :path, size: 500, default: "/", null: false
-      t.integer :position, default: 0, null: false
+      t.integer :position, index: true
 
       t.timestamps null: false
     end

@@ -3,7 +3,7 @@ class CreateProductPhotos < ActiveRecord::Migration
     create_table :product_photos do |t|
       t.references :product, index: true
       t.string :src
-      t.integer :position, default: 0, null: false
+      t.integer :position, index: true
     end
     add_foreign_key :product_photos, :products
   end

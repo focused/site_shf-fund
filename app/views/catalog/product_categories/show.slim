@@ -1,21 +1,8 @@
 .root
   .slider
     .slick-slider data-role="slider"
-      div
-        img src=image_url("slider_sample.jpg")
-        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
-      div
-        img src=image_url("slider_sample.jpg")
-        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
-      div
-        img src=image_url("slider_sample.jpg")
-        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
-      div
-        img src=image_url("slider_sample.jpg")
-        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
-      div
-        img src=image_url("slider_sample.jpg")
-        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
+      = render partial: "slides/slide",
+               collection: Slide.ordered
 
     .links
       a href=app_document_path("payment_and_delivery")

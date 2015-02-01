@@ -7,7 +7,7 @@ module AppData
     def call(scope_attrs, data_attrs)
       scope
         .where(scope_attrs)
-        .first_or_create(data_attrs)
+        .first_or_create!(data_attrs)
     end
   end
 end
