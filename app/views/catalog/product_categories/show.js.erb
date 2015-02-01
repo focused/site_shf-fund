@@ -1,0 +1,13 @@
+<%
+html = escape_javascript render(
+  partial: "catalog/products/product",
+  collection: Catalog::ProductCategoryDocument.new(params[:path]).all_products(params[:page].to_i)
+)
+%>
+
+$("[data-role='catalog_container']").append("<%= html %>")
+
+$form = $("[data-role='catalog_container']").parent().find("form[action*='/catalog/']")
+formAction = $form.attr("action")
+$form.attr("action", formAction.replace(/(page=)\d+/, '$1<%= params[:page].to_i + 1 %>'))
+

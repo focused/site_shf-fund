@@ -1,0 +1,42 @@
+.root
+  .slider
+    .slick-slider data-role="slider"
+      div
+        img src=image_url("slider_sample.jpg")
+        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
+      div
+        img src=image_url("slider_sample.jpg")
+        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
+      div
+        img src=image_url("slider_sample.jpg")
+        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
+      div
+        img src=image_url("slider_sample.jpg")
+        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
+      div
+        img src=image_url("slider_sample.jpg")
+        .text = simple_format "Мы дарим надежду,\n Вы обретаете друга..."
+
+    .links
+      a href=app_document_path("payment_and_delivery")
+        | Доставка 3 дня
+      span.spacer
+      a href=app_document_path("payment_and_delivery")
+        | Гарантия
+      span.spacer
+      a href=app_document_path("payment_and_delivery")
+        | Бонус - планировка
+
+  .catalog_content
+    ul data-role="catalog_container"
+      = render partial: "catalog/products/product",
+               collection: @product_category_document.all_products
+
+
+    .clear
+    = button_to "Смотреть больше предложений",
+      catalog_product_category_path(0, path: @product_category_document.path, page: 1),
+      remote: true,
+      method: "get",
+      class: "more"
+
