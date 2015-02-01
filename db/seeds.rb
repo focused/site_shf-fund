@@ -3,6 +3,8 @@ require 'ffaker'
 # ------------------------------------------------------------------------------
 # App
 
+p "Seeding Document..."
+
 create_by = AppData::Seed[Document]
 
 create_by[name: "Главная"].(
@@ -54,6 +56,9 @@ end
 
 # ------------------------------------------------------------------------------
 # Catalog
+
+p "Seeding ProductCategory, Product, ProductPhoto..."
+
 categories = {
   desktops: ["Рабочие столы", {
     direct: "Прямые",
@@ -104,48 +109,46 @@ categories = {
   }]
 }
 
+Product.destroy_all if Rails.env.development?
+
 # main categories
-categories.each_with_index do |(parent_key, parent_data), index|
-  parent_category = ProductCategory.where(
-    name: parent_data.first,
-    path: "/#{parent_key}"
-  ).first_or_create(
-    position: index
-  )
+categories.each_with_index do |(parent_key, parent_data)|
+  parent_category =
+    ProductCategory.in_category(nil)
+      .where(name: parent_data.first, path: "/#{parent_key}")
+      .first_or_create!
 
   # secondary categories
   parent_data.second.each_with_index do |(key, value), i|
     category =
-      ProductCategory
-        .where(product_category: parent_category)
+      parent_category.product_categories
         .where(name: value, path: "#{parent_key}/#{key}")
-        .first_or_create(position: i)
+        .first_or_create!
 
     # products
-    # n = case i
-    #     when 0 then 16 + rand(5..10)
-    #     when 1 then 5
-    #     else
-    #       0
-    #     end
+    n = case i
+        when 0 then 16 + rand(5..10)
+        when 1 then 5
+        else
+          0
+        end
     (16 * (1 - i) + rand(5..10)).times do |j|
       name = Faker::Product.product
 
-      product = Product.new(
+      product = Product.create!(
         product_category: category,
         name: name,
         path_id: name.downcase.gsub(' ', '_'),
-        position: j,
         code: Faker::Product.model,
         price: rand(1..199) * 500,
         factory_url: Faker::Internet.http_url,
-        wear_pct: rand(0..99) + rand,
+        wear_pct: rand(0..49) + rand,
         warranty: (n = rand(0..2)) > 0 ? "#{n} year(s)" : ""
       )
 
       # product photos
-      (rand(1..5) - j * 2 - i * 2).times do |k|
-        photo = ProductPhoto.new(position: k, product: product)
+      (rand(1..5) - j * 2 - i * 2).times do
+        photo = ProductPhoto.new(product: product)
         photo.src = File.open(Rails.root.join("app/assets/images/product_sample_1_big.jpg"))
         photo.save!
       end
@@ -153,9 +156,12 @@ categories.each_with_index do |(parent_key, parent_data), index|
   end
 end
 
+p "ProductCategory: #{ProductCategory.count}, Product: #{Product.count}"
+
 # product couples
+id_range = (Product.minimum(:id)..Product.maximum(:id) - 4)
 Product.all.each do |product|
-  id = rand(1..Product.maximum(:id) - 4)
+  id = rand(id_range)
 
   product.product_couples = (0..rand(5))
     .lazy
@@ -167,3 +173,11 @@ end
 
 
 # ------------------------------------------------------------------------------
+# Other
+Slide.destroy_all if Rails.env.development?
+5.times do
+  Slide.create!(
+    content: "<p>#{Faker::HipsterIpsum.sentence}</p>",
+    src: File.open(Rails.root.join("app/assets/images/slider_sample.jpg"))
+  )
+end
