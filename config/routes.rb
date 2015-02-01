@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-
   mount Upmin::Engine => '/admin'
   mount Ckeditor::Engine => '/ckeditor'
 
-  root "web_documents#show"
-  get ":path" => "web_documents#show", as: "web_document"
+  # Catalog
+  namespace :catalog do
+    resources :product_categories, only: %w(show)
+  end
+
+  # App
+  root "app/documents#show"
+  get ":path/(:path_id)" => "app/documents#show", as: "app_document"
 end

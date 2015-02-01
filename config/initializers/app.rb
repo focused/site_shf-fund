@@ -1,1 +1,5 @@
-require "presence"
+# require "presence"
+
+# App::DocumentTypes
+#   .add Catalog
+

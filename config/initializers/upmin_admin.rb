@@ -1,3 +1,3 @@
 Upmin.configure do |config|
-  config.models = [:web_document]
+  config.models = [:document, :product_category, :product]
 end
