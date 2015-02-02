@@ -3,7 +3,7 @@ module Catalog
     def self.call(request_path, path_id)
       model = ::Document.match(request_path.to_s, name)
       model && document = new(model, request_path, path_id)
-      document.product && document
+      document.category && document.product && document
     end
 
     def product
@@ -11,13 +11,13 @@ module Catalog
     end
 
     def breadcrumbs
-      {}
-      # return {} unless parent_category
-      # { parent_category.name => parent_category.path }
+      bcs = {}
+      parent_category && bcs = { parent_category.name => parent_category.path }
+      bcs.merge(category.name => category.path)
     end
 
     def breadcrumb_name
-      # product.name
+      product.name
     end
   end
 end

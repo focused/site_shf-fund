@@ -7,5 +7,9 @@ module Catalog
     def category
       @category ||= at_root? ? Root.new : ProductCategory.find_by(path: path)
     end
+
+    def parent_category
+      category.product_category
+    end
   end
 end

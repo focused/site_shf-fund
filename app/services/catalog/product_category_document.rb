@@ -28,11 +28,5 @@ module Catalog
     def has_more_products?
       all_products(1).any?
     end
-
-    private
-
-    def parent_category
-      category.product_category
-    end
   end
 end
