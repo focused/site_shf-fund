@@ -8,8 +8,10 @@ module App
     end
 
     def breadcrumbs
+      {}
     end
 
+    alias_method :breadcrumb_name, :name
     alias_method :at_root?, :at_model_root?
   end
 end

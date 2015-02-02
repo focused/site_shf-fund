@@ -8,10 +8,15 @@ module Catalog
     end
 
     def breadcrumbs
+      return {} unless parent_category
+      { parent_category.name => parent_category.path }
+    end
+
+    def breadcrumb_name
+      category.name
     end
 
     def all_products(page = 0, size = 16)
-      p category
       Product
         .all_products(category)
         .order(:product_category_id)
@@ -22,6 +27,12 @@ module Catalog
 
     def has_more_products?
       all_products(1).any?
+    end
+
+    private
+
+    def parent_category
+      category.product_category
     end
   end
 end

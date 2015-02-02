@@ -2,6 +2,7 @@
   .bread_crumbs
     a href=root_path Главная
     = " / "
-    - @document.breadcrumbs do |name, url|
+    - @document.breadcrumbs.each do |name, url|
       a href=url = name
-    span = @document.name
+      = " / "
+    span = @document.breadcrumb_name
