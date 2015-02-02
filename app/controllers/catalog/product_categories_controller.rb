@@ -1,5 +1,5 @@
 class Catalog::ProductCategoriesController < ApplicationController
   def show
-    @document = Catalog.get_document(params[:path])
+    @document = Catalog::ProductCategoryDocument.(params[:path])
   end
 end

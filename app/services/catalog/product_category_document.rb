@@ -1,10 +1,10 @@
 module Catalog
   class ProductCategoryDocument < Document
-    attr_reader :product_category
-
     def self.call(request_path)
       model = ::Document.match(request_path.to_s, name)
-      model && new(model, request_path)
+
+      model && document = new(model, request_path)
+      document.category && document
     end
 
     def breadcrumbs

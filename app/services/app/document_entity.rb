@@ -2,7 +2,7 @@ module App::DocumentEntity
   extend ActiveSupport::Concern
 
   included do
-    attr_reader :model, :path
+    attr_reader :model, :path, :path_id
 
     delegate :name, :content, to: :model
 
@@ -11,9 +11,10 @@ module App::DocumentEntity
     end
   end
 
-  def initialize(model, request_path = nil)
+  def initialize(model, request_path = nil, path_id = nil)
     @model = model
     @path = App::PATH_FORMATTER[request_path.to_s]
+    @path_id = path_id
   end
 
   def at_model_root?

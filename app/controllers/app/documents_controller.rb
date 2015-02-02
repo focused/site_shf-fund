@@ -5,7 +5,7 @@ module App
     end
 
     def show
-      @document = App.get_document(params[:path])
+      @document = App::StaticDocument.(params[:path])
       # TODO: refactor
       # App.handle(@document, "/#{params[:path]}") do |h|
       #   name = h.class.name.demodulize.underscore
