@@ -112,7 +112,7 @@ categories = {
 Product.destroy_all if Rails.env.development?
 
 # main categories
-categories.each_with_index do |(parent_key, parent_data)|
+categories.each_with_index do |(parent_key, parent_data), parent_index|
   parent_category =
     ProductCategory.in_category(nil)
       .where(name: parent_data.first, path: "/#{parent_key}")
@@ -122,17 +122,11 @@ categories.each_with_index do |(parent_key, parent_data)|
   parent_data.second.each_with_index do |(key, value), i|
     category =
       parent_category.product_categories
-        .where(name: value, path: "#{parent_key}/#{key}")
+        .where(name: value, path: "/#{parent_key}/#{key}")
         .first_or_create!
 
-    # products
-    n = case i
-        when 0 then 16 + rand(5..10)
-        when 1 then 5
-        else
-          0
-        end
-    (16 * (1 - i) + rand(5..10)).times do |j|
+    next if parent_index > 1 || i > 1
+    (16 * (1 - i) + rand(5)).times do |j|
       name = Faker::Product.product
 
       product = Product.create!(
@@ -146,8 +140,9 @@ categories.each_with_index do |(parent_key, parent_data)|
         warranty: (n = rand(0..2)) > 0 ? "#{n} year(s)" : ""
       )
 
+      next if j > 1
       # product photos
-      (rand(1..5) - j * 2 - i * 2).times do
+      (rand(1..5)).times do
         photo = ProductPhoto.new(product: product)
         photo.src = File.open(Rails.root.join("app/assets/images/product_sample_1_big.jpg"))
         photo.save!

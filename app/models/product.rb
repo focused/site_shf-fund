@@ -4,14 +4,14 @@ class Product < ActiveRecord::Base
   before_validation :fill_defaults
 
   belongs_to :product_category
-  has_many :product_photos, dependent: :destroy
+  has_many :product_photos, -> { ordered }, dependent: :destroy
   has_and_belongs_to_many :product_couples,
     class_name: "Product",
     join_table: "product_couples",
     association_foreign_key: "couple_id"
 
   scope :all_products, -> category do
-    where(product_category_id: [category.id, category.subcategory_ids])
+    where(product_category_id: [category.id, category.subcategory_ids].flatten)
   end
 
   validates :name, :path_id, presence: true

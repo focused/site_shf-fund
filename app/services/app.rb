@@ -1,21 +1,22 @@
 module App
   module_function
 
-  def get_document(request_path, id)
-    [Document, RawDocument].reduce(nil) do |res, model|
-      res || model.(request_path)
-    end
+  ROOT_PATH = "/"
+  PATH_FORMATTER = -> str { str.rjust(str.size + 1, "/") }
+
+  def get_document(request_path)
+    StaticDocument.(request_path)
+    # TODO ?
+    # [StaticDocument, RawDocument].reduce(nil) do |res, model|
+    #   res || model.(request_path)
+    # end
   end
 
-  def handle(document)
-    document.handler && yield(const_get(document.handler).(document.path))
+  class << self
+    alias_method :any_document?, :get_document
   end
 
-  def create_data(scope_attrs)
-    -> attrs do
-      Document.where(scope_attrs).first_or_create(
-        attrs.merge(position: (Document.maximum(:position) || -1) + 1)
-      )
-    end
-  end
+  # def handle(document, request_path = document.path)
+  #   document.handler && yield(const_get(document.handler).(request_path))
+  # end
 end

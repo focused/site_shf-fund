@@ -21,13 +21,4 @@ class ProductCategory < ActiveRecord::Base
   def get_product(id)
     products.find_by(path_id: id)
   end
-
-  # private
-
-  # def get_max_position
-  #   self.class
-  #     .unscoped
-  #     .in_category(product_category)
-  #     .maximum(:position).to_i + 1
-  # end
 end

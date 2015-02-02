@@ -1,5 +1,5 @@
 .wrapper
-  a.item href=app_document_path(menu_item.path) = menu_item.name
+  a.item href=menu_item.path = menu_item.name
   .submenu
     - menu_item.product_categories.each do |subitem|
-      a.item href=app_document_path(subitem.path) = subitem.name
+      a.item href=subitem.path = subitem.name

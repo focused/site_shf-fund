@@ -1,13 +1,23 @@
 class Document < ActiveRecord::Base
   include Positioned
 
-  PATH_FORMATTER = -> str { str.rjust(str.size + 1, "/") }
+  before_validation :normalize
 
   validates :name, :path, presence: true
   validates :path, length: { maximum: 500 }
 
-  def self.call(request_path)
-    ordered.find_by(path: PATH_FORMATTER[request_path.to_s])
+  # TODO: move to App
+  def self.match(request_path, handler_class_name = nil)
+    scope = where(handler: handler_class_name).ordered
+
+    res = scope.find_by(path: App::PATH_FORMATTER[request_path])
+    res || (handler_class_name.present? && scope.find_by(path: "/"))
+  end
+
+  private
+
+  def normalize
+    self.path = App::PATH_FORMATTER[path]
   end
 end
 

@@ -1,5 +1,5 @@
 class Catalog::ProductCategoriesController < ApplicationController
   def show
-    # format.js
+    @document = Catalog.get_document(params[:path])
   end
 end

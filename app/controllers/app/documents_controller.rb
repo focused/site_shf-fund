@@ -5,12 +5,13 @@ module App
     end
 
     def show
-      @document = App.get_document(*params.values_at(:path, :path_id))
-      App.handle(@document) do |h|
-        name = h.class.name.demodulize.underscore
-        instance_variable_set "@#{name}", h
-        render h.view_path, locals: { name.to_sym => h }
-      end
+      @document = App.get_document(params[:path])
+      # TODO: refactor
+      # App.handle(@document, "/#{params[:path]}") do |h|
+      #   name = h.class.name.demodulize.underscore
+      #   instance_variable_set "@#{name}", h
+      #   render h.view_path, locals: { name.to_sym => h }
+      # end
     end
   end
 end

@@ -2,4 +2,6 @@
   .bread_crumbs
     a href=root_path Главная
     = " / "
-    span О компании
+    - @document.breadcrumbs do |name, url|
+      a href=url = name
+    span = @document.name

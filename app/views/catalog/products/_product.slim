@@ -1,7 +1,8 @@
-li
-  a href=""
-    span.title = product.name
-    span.picture
-      img src=image_url("product_sample_1.jpg")
-  span.price = number_to_currency(product.price, precision: 0)
-  /руб.
+- Catalog::ProductCard.(product) do |product, card|
+  li
+    a href=card.url
+      span.title = product.name
+      span.picture
+        img src=card.preview_url
+    span.price = number_to_currency(product.price, precision: 0)
+    /руб.
