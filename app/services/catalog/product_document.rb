@@ -2,8 +2,11 @@ module Catalog
   class ProductDocument < Document
     def self.call(request_path, path_id)
       model = ::Document.match(request_path.to_s, name)
-      model && document = new(model, request_path, path_id)
-      document.category && document.product && document
+
+      return unless model && document = new(model, request_path, path_id)
+      return unless document.category && document.product
+
+      document
     end
 
     def product

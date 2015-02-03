@@ -3,8 +3,10 @@ module Catalog
     def self.call(request_path)
       model = ::Document.match(request_path.to_s, name)
 
-      model && document = new(model, request_path)
-      document.category && document
+      return unless model && document = new(model, request_path)
+      return unless document.category
+
+      document
     end
 
     def breadcrumbs
