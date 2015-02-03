@@ -1,5 +1,7 @@
 module Catalog
   class ProductDocument < Document
+    include ProductBase
+
     def self.call(request_path, path_id)
       model = ::Document.match(request_path.to_s, name)
 
@@ -15,6 +17,14 @@ module Catalog
 
     def subcategories
       parent_category.product_categories
+    end
+
+    def main_photo_url
+      primary_photo && primary_photo.src.normal
+    end
+
+    def photo_previews
+      product.product_photos.take(4)
     end
 
     def related_products

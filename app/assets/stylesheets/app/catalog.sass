@@ -69,6 +69,31 @@ section.extra
         display: block
         padding: 6px 0 0
   .gallery
-    width: 358px - $pad
+    width: 365px - $pad
+    margin-left: $pad
+    overflow: hidden
+    img
+      display: block
+      margin: 0 auto
+    ul
+      $border_size: 1px
+      $w: 76px
+      $pad: 4px
+      margin: 67px auto 0
+      width: ($w + $border_size * 2) * 4 + $pad * 3
+      padding: 0
+      list-style: none
+      li
+        float: left
+        margin: 0 $pad 0 0
+        padding: 0
+        border: $border_size solid #d0d0d0
+        border-radius: 2px
+        width: $w
+        img
+          display: block
+          margin: 0 auto
+        &:last-child
+          margin-right: 0
   .description
-    width: 330px
+    float: right

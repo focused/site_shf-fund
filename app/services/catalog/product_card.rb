@@ -2,6 +2,8 @@ module Catalog
   module_function
 
   ProductCard = Struct.new :product do
+    include ProductBase
+
     def self.call(model, *args)
       obj = new model, *args
       yield model, obj
@@ -11,15 +13,11 @@ module Catalog
       "#{product_category_path}/#{product.path_id}"
     end
 
-    def main_preview_url
+    def preview_url
       primary_photo && primary_photo.src.main_preview
     end
 
     private
-
-    def primary_photo
-      product.product_photos.first
-    end
 
     def product_category_path
       product.product_category && product.product_category.path

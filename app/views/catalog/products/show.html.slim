@@ -3,6 +3,9 @@
     = render "side_menu"
 
   .gallery
+    img src=@document.main_photo_url
+    ul
+      = render @document.photo_previews
 
   .description
 
