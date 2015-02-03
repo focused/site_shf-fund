@@ -1,0 +1,9 @@
+SECRET_KEY_BASE: d296e35305e373011cd1784515afd83d008612ad941f8f1710ee6e599a277cb651042e3eadd115d4ab08013f43b16550c6382da90a4159fc5e1b9c0fdaaa4a9b
+
+DATABASE_URL: "postgres://user:password@localhost"
+
+DEFAULT_EMAIL: "info@furniturefund.ru"
+
+SMTP_ADDRESS: "xxx"
+SMTP_USER_NAME: "xxx"
+SMTP_PASSWORD: "xxx"

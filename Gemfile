@@ -54,3 +54,6 @@ gem "mini_magick"
 gem "ckeditor", git: "git://github.com/galetahub/ckeditor.git"
 gem 'responders', '~> 2.0'
 
+# Deploy
+gem 'capistrano', '~> 2.15'
+gem 'figaro'

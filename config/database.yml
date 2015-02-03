@@ -19,7 +19,7 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: 5
+  pool: 15
 
 development:
   <<: *default
@@ -58,6 +58,7 @@ development:
 test:
   <<: *default
   database: shf_fund_test
+  url: <%= ENV['DATABASE_URL'] %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,5 +82,4 @@ test:
 production:
   <<: *default
   database: shf_fund_production
-  username: shf_fund
-  password: <%= ENV['SHF_FUND_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
