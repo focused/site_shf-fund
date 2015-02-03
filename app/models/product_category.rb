@@ -9,8 +9,12 @@ class ProductCategory < ActiveRecord::Base
   validates :path, length: { maximum: 500 }
 
   class << self
+    def main_with_secondary
+      main.includes(:product_categories)
+    end
+
     def main
-      in_category(nil).includes(:product_categories)
+      in_category(nil)
     end
   end
 

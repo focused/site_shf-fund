@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   mount Upmin::Engine => '/admin'
   mount Ckeditor::Engine => '/ckeditor'
 
-  root "catalog/product_categories#show"
+  root "catalog/product_categories#show",
+    constraints: -> params, _ { Catalog::ProductCategoryDocument.(params[:path]) }
 
   # Catalog
   namespace :catalog do

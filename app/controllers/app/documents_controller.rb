@@ -6,6 +6,7 @@ module App
 
     def show
       @document = App::StaticDocument.(params[:path])
+      # render "root" unless @document
       # TODO: refactor
       # App.handle(@document, "/#{params[:path]}") do |h|
       #   name = h.class.name.demodulize.underscore

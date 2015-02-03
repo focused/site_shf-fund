@@ -2,7 +2,7 @@ module App
   module_function
 
   ROOT_PATH = "/"
-  PATH_FORMATTER = -> str { str.rjust(str.size + 1, "/") }
+  PATH_FORMATTER = -> str { str[0] != "/" ? "/#{str}" : str  }
 
   # def get_document(request_path)
   #   StaticDocument.(request_path)
