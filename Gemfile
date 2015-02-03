@@ -55,5 +55,6 @@ gem "ckeditor", git: "git://github.com/galetahub/ckeditor.git"
 gem 'responders', '~> 2.0'
 
 # Deploy
+gem 'unicorn'
 gem 'capistrano', '~> 2.15'
 gem 'figaro'

@@ -44,7 +44,7 @@ load 'deploy/assets'
 # Если вы не используете авторизацию SSH по ключам И ssh-agent,
 # закомментируйте эту опцию.
 ssh_options[:forward_agent] = true
-# default_run_options[:pty] = true
+default_run_options[:pty] = true
 
 # Имя вашего проекта в панели управления.
 # Не меняйте это значение без необходимости, оно используется дальше.
