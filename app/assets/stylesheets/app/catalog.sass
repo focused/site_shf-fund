@@ -69,7 +69,7 @@ section.extra
         display: block
         padding: 6px 0 0
   .gallery
-    width: 365px - $pad
+    width: 360px - $pad
     margin-left: $pad
     overflow: hidden
     img
@@ -79,8 +79,9 @@ section.extra
       $border_size: 1px
       $w: 76px
       $pad: 4px
+      $count: 4
       margin: 67px auto 0
-      width: ($w + $border_size * 2) * 4 + $pad * 3
+      width: ($w + $border_size * 2 + $pad) * $count - $pad
       padding: 0
       list-style: none
       li
@@ -96,4 +97,39 @@ section.extra
         &:last-child
           margin-right: 0
   .description
+    position: relative
     float: right
+    width: 330px
+    min-height: 660px
+    font-size: 14px
+    h1, .price
+      font-size: 22px
+      color: $text_medium
+    h1
+      margin: 0 0 7px
+      font-weight: normal
+    a.url
+      font-size: 18px
+      display: inline-block
+      margin: 0 0 7px
+    .tail
+      position: absolute
+      left: 0
+      bottom: 0
+      right: 0
+    .price
+      float: left
+      padding: 6px 0 0
+    a.add_to_cart
+      $v_pad: 10px
+      float: right
+      height: 38px - $v_pad
+      padding: $v_pad 15px 0
+      font-size: 14px
+      text-align: center
+      background: #cacaca
+      &:hover
+        color: #635b59
+    p
+
+
