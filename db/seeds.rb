@@ -158,7 +158,7 @@ id_range = (Product.minimum(:id)..Product.maximum(:id) - 4)
 Product.all.each do |product|
   id = rand(id_range)
 
-  product.product_couples = (0..rand(5))
+  product.product_couples = (0..rand(5) - 1)
     .lazy
     .map { |n| id + n }
     .map(&Product.method(:find))
