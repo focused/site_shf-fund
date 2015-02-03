@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
 
   belongs_to :product_category
   has_many :product_photos, -> { ordered }, dependent: :destroy
-  has_and_belongs_to_many :product_couples,
+  has_and_belongs_to_many :product_couples, -> { ordered },
     class_name: "Product",
     join_table: "product_couples",
     association_foreign_key: "couple_id"

@@ -11,8 +11,8 @@ module Catalog
       "#{product_category_path}/#{product.path_id}"
     end
 
-    def preview_url
-      primary_photo && primary_photo.src.preview
+    def main_preview_url
+      primary_photo && primary_photo.src.main_preview
     end
 
     private

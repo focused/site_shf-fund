@@ -6,6 +6,11 @@ ru:
   app:
     name: "Furniture Fund"
 
+  catalog:
+    products:
+      show:
+        product_couples: Сопутствующие товары
+
   _shared:
     header:
       title: Фонд помощи подержанной мебели

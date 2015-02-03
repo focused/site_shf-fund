@@ -140,7 +140,7 @@ categories.each_with_index do |(parent_key, parent_data), parent_index|
         warranty: (n = rand(0..2)) > 0 ? "#{n} year(s)" : ""
       )
 
-      next if j > 1
+      next if j > 3
       # product photos
       (rand(1..5)).times do
         photo = ProductPhoto.new(product: product)
