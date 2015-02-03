@@ -133,6 +133,7 @@ categories.each_with_index do |(parent_key, parent_data), parent_index|
         product_category: category,
         name: name,
         path_id: name.downcase.gsub(' ', '_'),
+        description: Faker::HipsterIpsum.paragraph,
         code: Faker::Product.model,
         price: rand(1..199) * 500,
         factory_url: Faker::Internet.http_url,
