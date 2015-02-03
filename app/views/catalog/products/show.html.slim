@@ -11,12 +11,13 @@
 
   .clear
 
-section.extra
-  h2 = t ".product_couples"
+- if @document.related_products.any?
+  section.extra
+    h2 = t ".product_couples"
 
-  .category_content
-    ul data-role="catalog_container"
-      = render @document.related_products
+    .category_content
+      ul data-role="catalog_container"
+        = render @document.related_products
 
 
 
