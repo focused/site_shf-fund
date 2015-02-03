@@ -1,4 +1,2 @@
 .catalog_menu data-role="catalog_menu"
-  = render partial: "side_menu_item",
-    collection: ProductCategory.main,
-    spacer_template: "side_menu_spacer"
+  = render partial: "side_menu_item", collection: @document.subcategories

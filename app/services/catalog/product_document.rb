@@ -13,6 +13,10 @@ module Catalog
       category.products.find_by(path_id: path_id)
     end
 
+    def subcategories
+      parent_category.product_categories
+    end
+
     def related_products
       product.product_couples
     end
