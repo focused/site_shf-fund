@@ -31,8 +31,6 @@ group :development, :test do
   gem 'spring'
 
   gem 'awesome_print'
-
-  gem 'ffaker'
 end
 
 group :test do
@@ -58,3 +56,6 @@ gem 'responders', '~> 2.0'
 gem 'unicorn'
 gem 'capistrano', '~> 2.15'
 gem 'figaro'
+
+# Other
+gem 'ffaker'
