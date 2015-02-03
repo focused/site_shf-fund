@@ -1,5 +1,20 @@
 ru:
   activerecord:
+    attributes:
+      product:
+        product_photo: Изображение товара
+        name: Название
+        factory: Фабрика-производитель
+        factory_url: Ссылка на сайт фабрики-производителя
+        factory_country: СТРАНА-производитель
+        description: Описание
+        fabric: Материал обивки
+        size: Размер
+        wear_pct: Процент износа
+        code: Код продукта
+        price: Цена (руб.)
+        warranty: Гарантия
+
     models:
       "app/web/document": "Web-документ (страница)"
 
@@ -9,6 +24,7 @@ ru:
   catalog:
     products:
       show:
+        add_to_cart: "Добавить в корзину >>"
         product_couples: Сопутствующие товары
 
   _shared:

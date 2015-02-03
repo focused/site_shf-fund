@@ -8,6 +8,26 @@
       = render @document.photo_previews
 
   .description
+    - @document.product.tap do |x|
+      h1 = x.name
+
+      - if x.factory_url.present?
+        a.url href=x.factory_url
+          = x.factory_url
+
+      - @document.main_properties.each do |attribute_name, attribute|
+        p = "#{attribute_name}: #{attribute}"
+
+      - if x.description.present?
+        p = "#{Product.human_attribute_name(:description)}:"
+        p = "#{x.description}"
+
+      - @document.secondary_properties.each do |attribute_name, attribute|
+        p = "#{attribute_name}: #{attribute}"
+
+      .tail
+        span.price = number_to_currency(x.price, precision: 0)
+        a.add_to_cart href="" = t ".add_to_cart"
 
   .clear
 
@@ -18,46 +38,4 @@
     .category_content
       ul data-role="catalog_container"
         = render @document.related_products
-
-
-
-/ p#notice = notice
-
-/ p
-/   strong Photo:
-/   = product_document.photo
-/ p
-/   strong Name:
-/   = product_document.name
-/ p
-/   strong Factory:
-/   = product_document.factory
-/ p
-/   strong Factory url:
-/   = product_document.factory_url
-/ p
-/   strong Factory country:
-/   = product_document.factory_country
-/ p
-/   strong Description:
-/   = product_document.description
-/ p
-/   strong Fabric:
-/   = product_document.fabric
-/ p
-/   strong Size:
-/   = product_document.size
-/ p
-/   strong Wear pct:
-/   = product_document.wear_pct
-/ p
-/   strong Code:
-/   = product_document.code
-/ p
-/   strong Price:
-/   = product_document.price
-/ p
-/   strong Warranty:
-/   = product_document.warranty
-
 
