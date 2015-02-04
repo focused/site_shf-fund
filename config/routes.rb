@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   root "catalog/product_categories#show",
     constraints: -> params, _ { Catalog::ProductCategoryDocument.(params[:path]) }
 
+  # Cart
+  get "cart" => "order_items#index"
+  resources :order_items, only: %w(index create update destroy)
+
   # Catalog
   namespace :catalog do
     resources :product_categories, only: %w(show)
