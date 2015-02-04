@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201204411) do
+ActiveRecord::Schema.define(version: 20150204053204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 20150201204411) do
   add_index "documents", ["path", "handler"], name: "index_documents_on_path_and_handler", unique: true, using: :btree
   add_index "documents", ["path"], name: "index_documents_on_path", using: :btree
   add_index "documents", ["position"], name: "index_documents_on_position", using: :btree
+
+  create_table "order_items", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "price",      precision: 8, scale: 2
+    t.integer  "product_id"
+    t.integer  "count",                              default: 1, null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
   create_table "product_categories", force: :cascade do |t|
     t.integer  "product_category_id"
@@ -105,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150201204411) do
 
   add_index "slides", ["position"], name: "index_slides_on_position", using: :btree
 
+  add_foreign_key "order_items", "products"
   add_foreign_key "product_categories", "product_categories"
   add_foreign_key "product_photos", "products"
   add_foreign_key "products", "product_categories"

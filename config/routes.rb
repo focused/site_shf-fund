@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :order_items
+
   mount Upmin::Engine => '/admin'
   mount Ckeditor::Engine => '/ckeditor'
 

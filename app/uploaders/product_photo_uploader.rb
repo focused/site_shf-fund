@@ -15,6 +15,10 @@ class ProductPhotoUploader < ApplicationUploader
     process resize_to_fit: [324, 485]
   end
 
+  version :order_item do
+    process resize_to_fit: [150, 150]
+  end
+
   version :main_preview do
     process resize_to_fit: [190, 178]
   end

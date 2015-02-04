@@ -27,6 +27,10 @@ ru:
         add_to_cart: "Добавить в корзину >>"
         product_couples: Сопутствующие товары
 
+  order_items:
+    index:
+      title: Ваша корзина
+
   _shared:
     header:
       title: Фонд помощи подержанной мебели
