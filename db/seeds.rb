@@ -135,19 +135,21 @@ categories.each_with_index do |(parent_key, parent_data), parent_index|
         name: name,
         factory_url: Faker::Internet.http_url,
         factory: Faker::Company.name,
-        description: Faker::HipsterIpsum.paragraph,
+        factory_country: "Финляндия",
+        description: Faker::HipsterIpsum.paragraphs.join(" "),
         fabric: Faker::Color.name,
+        size: "L-100 см., W-12 см., H-134 см.",
         wear_pct: rand(0..49) + rand,
         code: Faker::Product.model,
         warranty: (n = rand(0..2)) > 0 ? "#{n} year(s)" : "",
         price: rand(1..199) * 500
       )
 
-      next if j > 3
+      next if j > 10
       # product photos
       (rand(1..5)).times do
         photo = ProductPhoto.new(product: product)
-        photo.src = File.open(Rails.root.join("app/assets/images/product_sample_1_big.jpg"))
+        photo.src = File.open(Rails.root.join("app/assets/images/product_sample_#{rand(0..3)}_big.jpg"))
         photo.save!
       end
     end

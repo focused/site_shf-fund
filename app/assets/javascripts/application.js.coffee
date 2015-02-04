@@ -4,3 +4,4 @@
 //= require slick
 
 //= require catalog_menu
+//= require products

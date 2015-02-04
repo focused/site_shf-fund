@@ -51,7 +51,7 @@ section.extra
 .product_content
   $pad: 35px
   margin: 26px 0 40px
-  min-height: 660px
+  // min-height: 660px
   & > div
     float: left
     // min-height: 660px
@@ -91,16 +91,17 @@ section.extra
         border: $border_size solid #d0d0d0
         border-radius: 2px
         width: $w
-        img
-          display: block
-          margin: 0 auto
+        height: 107px
+        background-repeat: no-repeat
+        background-position: center center
+        cursor: pointer
         &:last-child
           margin-right: 0
   .description
     position: relative
     float: right
     width: 330px
-    min-height: 660px
+    // min-height: 660px
     font-size: 14px
     h1, .price
       font-size: 22px
@@ -113,10 +114,11 @@ section.extra
       display: inline-block
       margin: 0 0 7px
     .tail
-      position: absolute
-      left: 0
-      bottom: 0
-      right: 0
+      // position: absolute
+      // left: 0
+      // bottom: 0
+      // right: 0
+      margin-top: 60px
     .price
       float: left
       padding: 6px 0 0

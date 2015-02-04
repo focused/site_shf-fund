@@ -2,7 +2,7 @@
   .sidebar
     = render "side_menu"
 
-  .gallery
+  .gallery data-role="gallery"
     img src=@document.main_photo_url
     ul
       = render @document.photo_previews
@@ -16,23 +16,27 @@
           = x.factory_url
 
       - @document.main_properties.each do |attribute_name, attribute|
-        p = "#{attribute_name}: #{attribute}"
+        p
+          span.attribute = "#{attribute_name}:"
+          = attribute
 
       - if x.description.present?
         p = "#{Product.human_attribute_name(:description)}:"
         p = "#{x.description}"
 
       - @document.secondary_properties.each do |attribute_name, attribute|
-        p = "#{attribute_name}: #{attribute}"
+        p
+          span.attribute = "#{attribute_name}:"
+          = attribute
 
       .tail
         span.price = number_to_currency(x.price, precision: 0)
         a.add_to_cart href="" = t ".add_to_cart"
 
-  .clear
+.clear
 
-- if @document.related_products.any?
-  section.extra
+section.extra
+  - if @document.related_products.any?
     h2 = t ".product_couples"
 
     .category_content
