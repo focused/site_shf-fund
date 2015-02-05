@@ -19,5 +19,7 @@ class Document < ActiveRecord::Base
   def normalize
     self.path = App::PATH_FORMATTER[path]
   end
+
+  alias_attribute :parent_id, :position
 end
 

@@ -22,4 +22,6 @@ class Product < ActiveRecord::Base
   def fill_defaults
     self.path_id ||= id
   end
+
+  alias_attribute :parent_id, :product_category_id
 end

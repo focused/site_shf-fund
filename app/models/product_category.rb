@@ -25,4 +25,6 @@ class ProductCategory < ActiveRecord::Base
   def get_product(id)
     products.find_by(path_id: id)
   end
+
+  alias_attribute :parent_id, :product_category_id
 end

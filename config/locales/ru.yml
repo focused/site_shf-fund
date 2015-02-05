@@ -1,22 +1,79 @@
 ru:
   activerecord:
     attributes:
-      product:
-        product_photo: Изображение товара
+      document:
+        content: Содержимое
+        created_at: "Дата создания"
+        handler: Обработчик
+        id: ID
         name: Название
-        factory: Фабрика-производитель
-        factory_url: Ссылка на сайт фабрики-производителя
-        factory_country: СТРАНА-производитель
+        path: Сегмент URL
+        position: Позиция
+        updated_at: "Дата изменения"
+      product:
+        id: ID
+        code: Код продукта
+        created_at: "Дата создания"
         description: Описание
         fabric: Материал обивки
-        size: Размер
-        wear_pct: Процент износа
-        code: Код продукта
+        factory: Фабрика-производитель
+        factory_country: Страна-производитель
+        factory_url: Ссылка на сайт фабрики-производителя
+        name: Название
+        path_id: Сегмент URL
+        position: Позиция
+        product_category_id: ID категории
+        product_category: Категория
+        product_couples: Сопутствующие товары
+        product_photos: Фотографии
         price: Цена (руб.)
+        size: Размер
+        updated_at: "Дата изменения"
         warranty: Гарантия
+        wear_pct: Процент износа
+      product_category:
+        id: ID
+        code: Код продукта
+        created_at: "Дата создания"
+        name: Название
+        path: URL
+        position: Позиция
+        product_category_id: Раздел
+        product_category: Раздел
+        product_categories: Подкатегории
+        products: Товары
+        updated_at: "Дата изменения"
+      product_photo:
+        position: Позиция
+        product_id: Товар
+        product: Товар
+        src: Изображение
+      slide:
+        id: ID
+        content: Содержимое
+        position: Позиция
+        src: Изображение
+
 
     models:
-      "app/web/document": "Web-документ (страница)"
+      document:
+        one: "Web-страница"
+        other: "Web-страницы (%{count})"
+      product:
+        one: "Товар"
+        other: "Товары (%{count})"
+      product_category:
+        one: "Категория товара"
+        other: "Категории товаров (%{count})"
+      product_photo:
+        one: "Фотография товара"
+        other: "Фотографии товаров (%{count})"
+      order:
+        one: "Заказ"
+        other: "Заказы (%{count})"
+      slide:
+        one: "Слайд"
+        other: "Слайды (%{count})"
 
   app:
     name: "Furniture Fund"
@@ -30,6 +87,14 @@ ru:
   order_items:
     index:
       title: Ваша корзина
+
+  views:
+    pagination:
+      first: "<<"
+      last: ">>"
+      next: ">"
+      previous: "<"
+      truncate: ' - '
 
   _shared:
     header:

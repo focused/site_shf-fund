@@ -1,0 +1,19 @@
+h5
+  = association.title
+
+- if association.collection?
+  p
+    a.btn.btn-success href=upmin_new_model_path(klass: association.name.to_s.classify)
+      span.glyphicon.glyphicon-plus
+      '
+      | Добавить
+
+- if association.empty?
+  p.well
+    | Нет
+
+- else
+  - association.upmin_values.each do |m|
+    a.active-tag-link href=m.path
+      span.label class=m.color
+        = m.respond_to?(:name) ? m.name : m.title

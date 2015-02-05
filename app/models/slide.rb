@@ -14,4 +14,6 @@ class Slide < ActiveRecord::Base
     return if src.current_path.nil?
     FileUtils.rm_rf(File.dirname(self.src.current_path))
   end
+
+  alias_attribute :parent_id, :position
 end
