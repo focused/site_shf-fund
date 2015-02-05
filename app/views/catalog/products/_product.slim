@@ -3,6 +3,7 @@
     a href=card.url
       span.title = product.name
       span.picture
-        img src=card.preview_url
+        - if card.preview_url
+          img src=card.preview_url
     span.price = number_to_currency(product.price, precision: 0)
     /руб.
