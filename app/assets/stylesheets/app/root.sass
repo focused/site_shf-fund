@@ -51,11 +51,28 @@
   .links
     float: right
     margin: -$dots_h 0 0
+    width: 468px
+    position: relative
     a
+      position: relative
+      z-index: 1
+      margin: 0
+    a.mid
+      margin: 0 auto
+      left: 0
+      right: 0
+      position: absolute
+      z-index: 0
+    a:first-child
       float: left
+      border-right: white 7px solid
+    a:last-child
+      float: right
+      border-left: white 7px solid
     .spacer
       float: left
       display: block
       width: 7px
       height: 1px
+      background: white
 
