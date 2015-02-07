@@ -52,6 +52,7 @@ gem 'remotipart', '~> 1.2'
 # UI
 gem "ckeditor", git: "git://github.com/galetahub/ckeditor.git"
 gem 'responders', '~> 2.0'
+gem "select2-rails"
 
 # Deploy
 gem 'unicorn'

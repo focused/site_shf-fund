@@ -1,16 +1,14 @@
 require_dependency "upmin/application_controller"
-require_dependency "./app/helpers/upmin/models_helper"
 
 module Upmin
   class ProductPhotosController < ApplicationController
     def create
-      @product_photos = []
+      @product = Product.find(params[:parent_id])
 
       params[:product_photo][:src].each do |file|
-        photo = ProductPhoto.new(product_id: params[:parent_id])
+        photo = ProductPhoto.new(product: @product)
         photo.src = file
         photo.save!
-        @product_photos << photo
       end
     end
 
@@ -19,8 +17,10 @@ module Upmin
         render nothing: true and return
       end
 
-      ProductPhoto.where(id: params[:product_photo][:_remove]).destroy_all
-      @product_photos = Product.find(params[:parent_id]).product_photos
+      @product = Product.find(params[:parent_id])
+      @product.product_photos
+        .where(id: params[:product_photo][:_remove])
+        .destroy_all
     end
 
     private

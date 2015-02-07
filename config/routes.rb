@@ -1,4 +1,6 @@
 Upmin::Engine.routes.draw do
+  resources :products, only: %w(update)
+
   resources :product_photos, only: %w(create) do
     delete :destroy, on: :collection
   end

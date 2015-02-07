@@ -15,7 +15,7 @@
     -# Yes this is meant to be model.model - this is the raw rails model instance.
     = form_for(model, url: model.create_path, html: { method: :post }) do |f|
 
-      - model.attributes.select(&:visible_in_model?).each do |attribute|
+      - model.attributes.select(&:visible_in_model?).reject { |x| %i(created_at updated_at).include?(x.name) }.each do |attribute|
         = up_render(attribute, locals: { form_builder: f })
 
       = f.submit("Создать", class: "btn btn-primary")

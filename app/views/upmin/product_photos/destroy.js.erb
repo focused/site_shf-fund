@@ -1,1 +1,3 @@
 $("[data-role=uploader] [data-role=upload-items]").html("<%= escape_javascript render("upmin/product_photos/index") %>");
+
+$("[data-role=uploader] .panel-title .size").text(<%= @product.product_photos.count %>)

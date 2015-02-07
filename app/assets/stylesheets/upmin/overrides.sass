@@ -1,13 +1,16 @@
 /*
  *= require bootstrap.css
- *= require_tree .
+ *= require upmin/models
+ *= require upmin/theme
+ *= require select2
+ *= require select2-bootstrap
+
  *= require_self
  */
 
 @import url("http://fonts.googleapis.com/css?family=Open+Sans&subset=cyrillic-ext,latin-ext")
 
-
-$gray: #708da0
+@import "upmin/colors"
 
 
 body
@@ -35,8 +38,10 @@ body
   background: #fbfcfe
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25)
   margin: 0 0 25px
-  // &.gray
-  border-left-color: $gray !important
+  &.brown
+    border-left-color: $brown
+    h3
+      color: $brown
   h3.properties
     color: #333
   > h3, > h4
@@ -47,7 +52,28 @@ body
     display: inline-block
     margin-bottom: 15px
 
-  .panel-body
+  form[data-remote]
+    margin: 0
+    position: relative
+    .busy
+      color: #89a
+      z-index: 99999
+      & > div
+        background: white
+        position: absolute
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+        opacity: 0.85
+        z-index: 99999
+      i
+        position: absolute
+        left: 50%
+        top: 50%
+        margin: -14px 0 0 -12px
+        z-index: 99999
+  .panel-body.thumbs
     .item
       float: left
       margin: 0 10px 10px 0

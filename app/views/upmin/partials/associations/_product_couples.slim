@@ -1,23 +1,30 @@
-.panel.panel-default
+.panel.panel-default data-role="receiver"
   .panel-heading
     .panel-title
       = association.title
       '
-      | (#{association.value.count})
+      | (
+      span.size = association.value.count
+      | )
 
-      a.btn.btn-xs.btn-link.pull-right href=""
-        i.fa.fa-code-fork
+      a.btn.btn-xs.btn-link.pull-right href="" data-role="reset"
+        i.fa.fa-refresh
         '
-        | Прикрепить
+        | Восстановить исходные
+      a.btn.btn-xs.btn-link.pull-right href="" data-role="apply"
+        i.fa.fa-check
+        '
+        | Сохранить
 
-  .panel-body
-    - if association.empty?
-      p
-        | Нет
 
-    - else
-      - association.upmin_values(limit: 30).each do |m|
-        a.active-tag-link href=m.path
-          span.label class=m.color
-            = m.respond_to?(:name) ? m.name : m.title
+  = form_for @model, remote: true, data: { role: "product_couples_form" } do |f|
+    .busy.hidden
+      div
+      i.fa.fa-cog.fa-spin.fa-2x
+    .panel-body
+      = hidden_field_tag :current_couple_ids, @model.product_couple_ids.join(",")
+      = f.select :product_couple_ids,
+        options_from_collection_for_select(Product.all, :id, :name, @model.product_couple_ids),
+        {},
+        multiple: true
 

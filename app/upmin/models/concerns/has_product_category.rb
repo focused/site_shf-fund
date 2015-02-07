@@ -1,8 +1,9 @@
 module HasProductCategory
   extend ActiveSupport::Concern
 
-  def breadcrumbs(parent_id = nil)
-    Breadcrumbs[get_parent(parent_id)].(method(:upmin_model_path))
+  def breadcrumbs(parent_id = nil, &block)
+    block ||= method(:upmin_model_path)
+    Breadcrumbs[get_parent(parent_id)].(&block)
   end
 
   def get_parent(id = nil)
@@ -16,7 +17,7 @@ module HasProductCategory
   private
 
   Breadcrumbs = Struct.new :parent do
-    def call(url_helper)
+    def call(&url_helper)
       [root, parent].compact.map(&breadcrumbs_item(url_helper))
     end
 

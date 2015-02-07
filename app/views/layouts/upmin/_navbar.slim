@@ -10,6 +10,7 @@
     #navbar-main.navbar-collapse.collapse
       ul.nav.navbar-nav
         - Upmin::Model.all.each do |m|
-          li
+          li class=(params[:klass] == m.model_class.name ? 'active' : '')
             a href=m.search_path
               = m.humanized_name(:plural)
+

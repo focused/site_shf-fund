@@ -1,1 +1,6 @@
-$("[data-role=uploader] [data-role=upload-items]").append("<%= escape_javascript render("upmin/product_photos/index") %>");
+$("[data-role=uploader] [data-role=remove_form] .busy").hide()
+
+$("[data-role=uploader] [data-role=upload-items] p").hide()
+$("[data-role=uploader] [data-role=upload-items]").html("<%= escape_javascript render("upmin/product_photos/index") %>");
+
+$("[data-role=uploader] .panel-title .size").text(<%= @product.product_photos.count %>)

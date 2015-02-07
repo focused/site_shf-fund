@@ -3,7 +3,9 @@
     .panel-title
       = association.title
       '
-      | (#{association.value.count})
+      | (
+      span.size = association.value.count
+      | )
 
       a.btn.btn-xs.btn-link.pull-right href="" data-role="remove_trigger"
         i.fa.fa-trash
@@ -13,15 +15,18 @@
       a.btn.btn-xs.btn-link.pull-right href="" data-role="upload_trigger"
         i.fa.fa-upload
         '
-        | Загрузить
+        | Загрузить изображения
 
       = form_for ProductPhoto.new, url: product_photos_path, remote: true, html: { style: "display: none" } do |f|
         = hidden_field_tag :parent_id, model.id
         = f.file_field :src, multiple: true, style: "display: none"
 
-  = form_for ProductPhoto.new, url: product_photos_path, remote: true, data: { role: "remove_form" }, html: { style: "margin: 0", method: "delete" } do |f|
+  = form_for ProductPhoto.new, url: product_photos_path, remote: true, data: { role: "remove_form" }, html: { method: "delete" } do |f|
     = hidden_field_tag :parent_id, model.id
-    .panel-body data-role="upload-items"
+    .busy.hidden
+      div
+      i.fa.fa-cog.fa-spin.fa-2x
+    .panel-body.thumbs data-role="upload-items"
       - if association.empty?
         p
           | Нет

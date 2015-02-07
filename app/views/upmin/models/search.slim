@@ -1,3 +1,6 @@
+- if (params[:q] && params[:q][:product_category_id_gteq] && params[:q][:product_category_id_gteq] == params[:q][:product_category_id_lteq])
+  - params[:parent_id] = params[:q][:product_category_id_gteq]
+
 .container
   .page-header
     h2
@@ -10,6 +13,15 @@
         i.fa.fa-plus
         '
         | Создать запись
+
+    - if params[:parent_id] && (category = AdminProductCategory.get(params[:parent_id]))
+      ol.breadcrumb
+        - AdminProductCategory.breadcrumbs(params[:parent_id]).each do |name, url|
+          li
+            a href=url = name
+        - if category
+          li.active
+            = category.name
 
   - if notice
     .alert.alert-dismissable.alert-info

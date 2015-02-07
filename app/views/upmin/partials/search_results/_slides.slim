@@ -1,0 +1,8 @@
+- query.upmin_results.each do |result|
+  a.search-result-link href=result.path
+    .upmin-model.upmin-card class=result.color
+      - if result.src
+        = image_tag result.src.thumb, class: "thumbnail"
+      = raw result.content
+
+
