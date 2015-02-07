@@ -1,6 +1,8 @@
 class Slide < ActiveRecord::Base
   include Positioned
 
+  alias_attribute :parent_id, :position
+
   mount_uploader :src, SlideUploader
 
   after_destroy :clear_files
@@ -15,5 +17,4 @@ class Slide < ActiveRecord::Base
     FileUtils.rm_rf(File.dirname(self.src.current_path))
   end
 
-  alias_attribute :parent_id, :position
 end

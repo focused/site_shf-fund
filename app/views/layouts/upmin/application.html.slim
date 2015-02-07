@@ -1,0 +1,30 @@
+html
+  head
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title = "Администрирование - #{t 'app.name'}"
+    = stylesheet_link_tag "upmin/application", media: "all"
+
+    script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"
+    = javascript_include_tag "upmin/application"
+    = csrf_meta_tags
+
+    = stylesheet_link_tag "upmin/overrides", media: "all"
+    = javascript_include_tag "upmin/overrides"
+
+    link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+
+    - if content_for?(:head)
+      = yield(:head)
+
+  body class=body_classes data=body_data.merge(root_path: root_path)
+    .page-wrap
+      = render('layouts/upmin/navbar')
+      -# = render('layouts/flash')
+      / = session[:parent_url] if Rails.env.development?
+      = yield
+
+    -# = render('layouts/footer')
+
+    - if content_for?(:javascript)
+      = yield(:javascript)
+

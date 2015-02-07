@@ -1,4 +1,16 @@
 .container
+  .page-header
+    h2
+      = @klass.humanized_name
+      '
+      small
+        = "(#{@query.upmin_results.size}, всего #{@klass.count})"
+
+      a.btn.btn-sm.btn-warning.pull-right href=upmin_new_model_path(klass: @klass.model_class_name, parent_id: params[:parent_id])
+        i.fa.fa-plus
+        '
+        | Создать запись
+
   - if notice
     .alert.alert-dismissable.alert-info
       button.close data-dismiss="alert" type="button"
@@ -16,8 +28,9 @@
               b
                 = @model.model_class.human_attribute_name(field)
               = error
+
   .row
-    .col-md-8
+    .col-md-9
       = up_paginate(@query.paginated_results)
       -# TODO(jon): Add pagination w/ search results
       = up_render(@query)
@@ -25,12 +38,12 @@
       = up_paginate(@query.paginated_results)
       br
       br
-    .col-md-4
+    .col-md-3
       -# TODO(jon): Implement up_search_box
-      = up_render(@klass)
-      .new-button-wrapper
+      /.new-button-wrapper
         a.btn.btn-block.btn-success href=upmin_new_model_path(klass: @klass.model_class_name)
-          = @klass.humanized_name(:singular)
+          i.fa.fa-plus
           '
-          | - создать новую запись
+          | Создать новую запись
         br
+      = up_render(@klass)

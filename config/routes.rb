@@ -1,3 +1,9 @@
+Upmin::Engine.routes.draw do
+  resources :product_photos, only: %w(create) do
+    delete :destroy, on: :collection
+  end
+end
+
 Rails.application.routes.draw do
   resources :order_items
 

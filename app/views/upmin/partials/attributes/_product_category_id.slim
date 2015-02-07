@@ -1,0 +1,15 @@
+.form-group class=(attribute.errors? ? "has-error" : "")
+  label for=attribute.form_id
+    = attribute.label_name
+
+  - if attribute.editable? && f = form_builder
+    = f.hidden_field(attribute.name, value: attribute.value, class: "form-control")
+
+  - if model.product_category || params[:parent_id]
+    ol.breadcrumb
+      - model.breadcrumbs(params[:parent_id]).each do |name, url|
+        li
+          a href=url = name
+  - else
+    p
+      | Нет

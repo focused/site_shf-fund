@@ -1,0 +1,53 @@
+.c-models.a-search {
+  a.search-result-link {
+    color: #333;
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      color: #333;
+    }
+  }
+
+  .search-results {
+    .search-result {
+      .icon-outer {
+        &.gray {
+          .icon-upper {
+            background-color: #708da0;
+          }
+          .icon-lower {
+            border: 1px solid #708da0;
+            color: #708da0;
+          }
+        }
+        &.brown {
+          .icon-upper {
+            background-color: #ad754c;
+          }
+          .icon-lower {
+            border: 1px solid #ad754c;
+            color: #ad754c;
+          }
+        }
+      }
+    }
+  }
+
+
+  .list-model-facets {
+    li {
+      &.gray:before {
+        color: #708da0;
+        background-color: #708da0;
+      }
+      &.brown:before {
+        color: #ad754c;
+        background-color: #ad754c;
+      }
+
+    }
+  }
+}
+
+

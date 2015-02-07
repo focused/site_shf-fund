@@ -47,6 +47,7 @@ gem 'upmin-admin', github: 'upmin/upmin-admin-ruby', ref: '86d2382'
 # Media
 gem "carrierwave"
 gem "mini_magick"
+gem 'remotipart', '~> 1.2'
 
 # UI
 gem "ckeditor", git: "git://github.com/galetahub/ckeditor.git"

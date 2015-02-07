@@ -1,0 +1,52 @@
+@import "upmin/button_mixins";
+
+$color_list: (
+  (yellow, #F1C40F),
+  (orange, #F39C12),
+  (red, #E74C3C),
+  (dark_red, #AB3326),
+  (purple, #9B59B6),
+  (dark_blue, #2C3E50),
+  (light_blue, #3498DB),
+  (blue_green, #18BC9C),
+  (gray, #708da0),
+  (brown, #ad754c),
+  (green, #01C94F));
+
+$yellow: #F1C40F;
+$orange: #F39C12;
+$red: #E74C3C;
+$dark_red: #AB3326;
+$purple: #9B59B6;
+$dark_blue: #2C3E50;
+$light_blue: #3498DB;
+$blue_green: #18BC9C;
+$gray: #708da0;
+$brown: #ad754c;
+$green: #01C94F;
+
+
+.btn {
+  @each $color in $color_list {
+    $name: nth($color, 1);
+    $hex: nth($color, 2);
+
+    &.btn-#{$name} {
+      @include button-variant(#fff, $hex, $hex);
+    }
+  }
+}
+
+.label {
+  margin-right: 10px;
+  font-weight: 500;
+
+  @each $color in $color_list {
+    $name: nth($color, 1);
+    $hex: nth($color, 2);
+
+    &.#{$name} {
+      background-color: $hex;
+    }
+  }
+}

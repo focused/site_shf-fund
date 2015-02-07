@@ -3,17 +3,17 @@ ru:
     attributes:
       document:
         content: Содержимое
-        created_at: "Дата создания"
+        created_at: Дата создания
         handler: Обработчик
         id: ID
         name: Название
         path: Сегмент URL
-        position: Позиция
-        updated_at: "Дата изменения"
+        position: Порядок следования
+        updated_at: Дата изменения
       product:
         id: ID
         code: Код продукта
-        created_at: "Дата создания"
+        created_at: Дата создания
         description: Описание
         fabric: Материал обивки
         factory: Фабрика-производитель
@@ -21,9 +21,9 @@ ru:
         factory_url: Ссылка на сайт фабрики-производителя
         name: Название
         path_id: Сегмент URL
-        position: Позиция
-        product_category_id: ID категории
-        product_category: Категория
+        position: Порядок отображения
+        product_category_id: Раздел каталога
+        product_category: Раздел каталога
         product_couples: Сопутствующие товары
         product_photos: Фотографии
         price: Цена (руб.)
@@ -33,47 +33,46 @@ ru:
         wear_pct: Процент износа
       product_category:
         id: ID
-        code: Код продукта
         created_at: "Дата создания"
         name: Название
         path: URL
-        position: Позиция
-        product_category_id: Раздел
-        product_category: Раздел
-        product_categories: Подкатегории
-        products: Товары
+        position: Порядок отображения
+        product_category_id: В разделе
+        product_category: В разделе
+        product_categories: Подразделы
+        products: Товарные позиции
         updated_at: "Дата изменения"
       product_photo:
-        position: Позиция
-        product_id: Товар
-        product: Товар
+        position: Порядок отображения
+        product_id: Товарная позиция
+        product: Товарная позиция
         src: Изображение
       slide:
         id: ID
         content: Содержимое
-        position: Позиция
+        position: Порядок отображения
         src: Изображение
 
 
     models:
       document:
         one: "Web-страница"
-        other: "Web-страницы (%{count})"
+        other: "Web-страницы"
       product:
-        one: "Товар"
-        other: "Товары (%{count})"
+        one: "Товарная позиция"
+        other: "Товарные позиции"
       product_category:
-        one: "Категория товара"
-        other: "Категории товаров (%{count})"
+        one: "Раздел каталога"
+        other: "Разделы каталога"
       product_photo:
         one: "Фотография товара"
-        other: "Фотографии товаров (%{count})"
+        other: "Фотографии товаров"
       order:
         one: "Заказ"
-        other: "Заказы (%{count})"
+        other: "Заказы"
       slide:
         one: "Слайд"
-        other: "Слайды (%{count})"
+        other: "Слайды"
 
   app:
     name: "Furniture Fund"

@@ -1,0 +1,163 @@
+@mixin inset-text-effect {
+  text-shadow: -0.5px -1px 0px rgba(0,0,0,0.4);
+}
+
+
+h1 {
+  // text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+.navbar-inverse {
+  background: #506070;
+  .navbar-brand {
+    color: #d8e0e0;
+    // text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+  }
+  .navbar-nav > li > a {
+    color: #d8e0e0;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+  }
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3)
+}
+
+.pagination {
+  display: block;
+  clear: both;
+  min-height: 34px;
+  &:first-of-type {
+    // margin-top: 0px;
+    margin-bottom: 20px;
+  }
+  &:last-of-type {
+    margin-top: 0px;
+    padding-top: 10px
+  }
+}
+
+
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  // border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-default {
+  color: #333333;
+  background-color: #fff;
+  border-color: #c2c0c4;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #333333;
+  background-color: #f8f8f8;
+  border-color: #adadad;
+}
+
+.btn-link,
+.btn-link:active,
+.btn-link[disabled],
+fieldset[disabled] .btn-link {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+
+
+.panel-heading {
+  text-shadow: 0.5px 1px 0px rgba(255,255,255,1);
+  .btn {
+    margin-top: -6px;
+    margin-right: -11px;
+    // color: #000;
+    // color: #fff;
+  }
+}
+
+
+.btn-default {
+  text-shadow: 0 1px 0 #fff;
+}
+a.btn {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+.btn-primary,
+.btn-success,
+.btn-warning,
+.btn-danger,
+.btn-info {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.jumbotron h1 {
+  font-size: 80px;
+  letter-spacing: -2px;
+  line-height: 1;
+  text-shadow: 4px 3px 0px #1d9d74, 9px 8px 0px rgba(0, 0, 0, 0.15);
+  margin: 0 0 15px;
+}
+.jumbotron p {
+  font-family: proxima-nova-sc-osf, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #c7e7dc;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: lighter;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.jumbotron-icon,
+.jumbotron-icon h1 {
+  text-shadow: 0 1px 0 #fff;
+}
+
+
+.thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.alert .alert-link {
+  font-weight: bold;
+}

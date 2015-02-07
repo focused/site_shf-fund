@@ -1,6 +1,8 @@
 class Document < ActiveRecord::Base
   include Positioned
 
+  alias_attribute :parent_id, :position
+
   before_validation :normalize
 
   validates :name, :path, presence: true
@@ -20,6 +22,5 @@ class Document < ActiveRecord::Base
     self.path = App::PATH_FORMATTER[path]
   end
 
-  alias_attribute :parent_id, :position
 end
 

@@ -1,6 +1,9 @@
 class Product < ActiveRecord::Base
   include PositionedInCategory
 
+  alias_attribute :parent_id, :product_category_id
+
+  after_initialize :normalize
   before_validation :fill_defaults
 
   belongs_to :product_category
@@ -15,13 +18,16 @@ class Product < ActiveRecord::Base
   end
 
   validates :name, :path_id, presence: true
-  validates :path_id, length: { maximum: 500 }
+  validates :path_id, length: { maximum: 500 }, uniqueness: [:product_category]
   validates :wear_pct, numericality: { maximum: 99.99 }
   validates :price, numericality: { maximum: 999999.99 }
+
+  def normalize
+    self.product_category_id ||= parent_id
+  end
 
   def fill_defaults
     self.path_id ||= id
   end
 
-  alias_attribute :parent_id, :product_category_id
 end

@@ -14,3 +14,24 @@
     a href=main_app.root_path
       = t "app.name"
     |.
+
+
+  br
+  h2 Каталог
+  hr
+  - ProductCategory.main_with_secondary.each_with_index do |item, i|
+    .list-group
+      a href=upmin_model_path(klass: ProductCategory, id: item.id) class="list-group-item active"
+        h4 class="list-group-item-heading"
+          = "#{i + 1}. "
+          = item.name
+
+      - item.product_categories.each_with_index do |subitem, j|
+        /p class="list-group-item-text"
+        a.list-group-item href=upmin_search_path(klass: Product, parent_id: subitem.id)
+          = "#{i + 1}.#{j + 1}. "
+          = subitem.name
+          span.badge
+            = subitem.products.size
+
+  br

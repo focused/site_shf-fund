@@ -1,6 +1,8 @@
 class ProductPhoto < ActiveRecord::Base
   include Positioned
 
+  alias_attribute :parent_id, :product_id
+
   mount_uploader :src, ProductPhotoUploader
 
   after_destroy :clear_files
@@ -26,5 +28,4 @@ class ProductPhoto < ActiveRecord::Base
     FileUtils.rm_rf(File.dirname(self.src.current_path))
   end
 
-  alias_attribute :parent_id, :product_id
 end

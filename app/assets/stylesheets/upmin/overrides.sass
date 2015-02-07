@@ -1,0 +1,62 @@
+/*
+ *= require bootstrap.css
+ *= require_tree .
+ *= require_self
+ */
+
+@import url("http://fonts.googleapis.com/css?family=Open+Sans&subset=cyrillic-ext,latin-ext")
+
+
+$gray: #708da0
+
+
+body
+  background: #f0f3f7
+  padding-top: 70px
+
+.page-wrap > .container
+  // background: #f8f9fb
+  & > .row
+    padding: 0px 0px 0
+  h4
+    white-space: nowrap
+
+.upmin-card
+  float: left
+  width: 200px
+  height: 180px
+  overflow: hidden
+  margin-right: 10px !important
+  text-align: center
+  img
+    margin: 0 auto
+
+.upmin-model
+  background: #fbfcfe
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25)
+  margin: 0 0 25px
+  // &.gray
+  border-left-color: $gray !important
+  h3.properties
+    color: #333
+  > h3, > h4
+    .btn
+      // color: white !important
+
+  a.active-tag-link
+    display: inline-block
+    margin-bottom: 15px
+
+  .panel-body
+    .item
+      float: left
+      margin: 0 10px 10px 0
+      text-align: center
+      input
+        height: 20px
+    a.active-tag-link
+      display: block
+      margin: 0
+
+
+

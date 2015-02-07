@@ -3,10 +3,10 @@
     = attribute.label_name
 
   .row
-    .col-md-4
-      .thumbnail
-        a href=attribute.value target="_blank"
-          = image_tag attribute.value.thumb
-        - if attribute.editable? && f = form_builder
-          = f.file_field(attribute.name, value: attribute.value, class: "form-control")
-          br
+    .col-md-1
+      a href=attribute.value target="_blank"
+        = image_tag attribute.value.thumb, class: "img-thumbnail"
+    .col-md-11
+      - if attribute.editable? && f = form_builder
+        = f.file_field(attribute.name, value: attribute.value, class: "form-control")
+        br

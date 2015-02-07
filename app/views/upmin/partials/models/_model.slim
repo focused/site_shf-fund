@@ -2,14 +2,21 @@
   h3
     = model.title
 
-    = link_to(model.path, method: :delete,
-      class: "btn btn-sm btn-danger delete pull-right",
-      title: "Удалить #{model.title}.",
-      data: { confirm: "Вы уверены?" }) do
-      span.glyphicon.glyphicon-trash.white
+    .btn-group.pull-right
+      - if model.respond_to?(:add_child_title)
+        = link_to model.new_child_path, class: "btn btn-sm btn-default", title: model.add_child_title do
+          i.fa.fa-plus
+          '
+          = model.add_child_title
+
+      = link_to model.path, method: :delete, class: "btn btn-sm btn-danger delete", title: "Удалить #{model.title}", data: { confirm: "Вы уверены?" } do
+        i.fa.fa-trash-o.fa-lg
+        '
+        | Удалить
+
 
   br
-  h3 style="color: #333;"
+  h3.properties
     | Свойства
 
   hr
@@ -21,13 +28,16 @@
       - model.attributes.select(&:visible_in_model?).each do |attribute|
         = up_render(attribute, locals: { form_builder: f })
 
-      = f.submit("Сохранить", class: "btn btn-primary")
+      = f.button type: "submit", class: "btn btn-primary" do
+        i.fa.fa-check
+        '
+        | Сохранить
 
   - if model.associations.any?
     br
     br
     br
-    h3 style="color: #333;"
+    h3.properties
       | Ассоциации
     hr
     .associations
@@ -38,7 +48,7 @@
     br
     br
     br
-    h3 style="color: #333;"
+    h3.properties
       | Действия
     hr
     .actions

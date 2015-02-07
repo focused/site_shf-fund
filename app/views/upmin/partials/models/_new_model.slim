@@ -1,3 +1,4 @@
+- model.parent_id = params[:parent_id] if params[:parent_id]
 
 .upmin-model class=model.color
   h3
@@ -6,9 +7,8 @@
     | - новая запись
 
   br
-  br
-  h3 style="color: #333;"
-    | Атрибуты
+  h3.properties
+    | Свойства
   hr
 
   .attributes

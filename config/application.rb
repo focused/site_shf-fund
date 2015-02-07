@@ -58,5 +58,7 @@ module ShfFund
       # ssl: true,
       domain: ""
     }
+
+    config.assets.paths << Rails.root.join("vendor/assets/bootstrap")
   end
 end

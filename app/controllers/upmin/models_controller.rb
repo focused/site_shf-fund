@@ -1,10 +1,12 @@
 require_dependency "upmin/application_controller"
+require_dependency "./app/helpers/upmin/models_helper"
 
 module Upmin
   class ModelsController < ApplicationController
     before_action :set_klass, only: [:new, :create, :show, :update, :destroy, :search, :action]
     before_action :set_model, only: [:show, :update, :destroy, :action]
 
+    before_action :set_parent, only: [:search]
     before_action :set_page, only: [:search]
     before_action :set_query, only: [:search]
     before_action :set_q_for_form_values, only: [:search]
@@ -17,6 +19,7 @@ module Upmin
 
     # GET /:model_name/:id
     def show
+      # set_parent_url unless params[:parent_id]
     end
 
     # GET /:model_name/new
@@ -47,10 +50,10 @@ module Upmin
       end
 
       if raw_model.save
-        flash[:notice] = "#{@klass.humanized_name(:singular)} - запись создана (id=#{raw_model.id})."
-        redirect_to(@model.path)
+        flash[:notice] = "Запись создана (id=#{raw_model.id})."
+        redirect_to @model.path
       else
-        flash.now[:alert] = "#{@klass.humanized_name(:singular)} - запись не была создана."
+        flash.now[:alert] = "Запись не была создана."
         render(:new)
       end
     end
@@ -75,15 +78,16 @@ module Upmin
       end
 
       if raw_model.save
-        flash[:notice] = "#{@klass.humanized_name(:singular)} - запись изменена."
-        redirect_to(@model.path)
+        flash[:notice] = "Запись изменена."
+        redirect_to @model.path
       else
-        flash.now[:alert] = "#{@klass.humanized_name(:singular)} - запись не была изменена."
+        flash.now[:alert] = "Запись не была изменена."
         render(:show)
       end
     end
 
     def search
+      # set_parent_url
       # @q = @klass.ransack(params[:q])
       # @results = Upmin::Paginator.paginate(@q.result(distinct: true), @page, 30)
     end
@@ -99,10 +103,10 @@ module Upmin
         @result = raw_model.destroy #active record
       end
       if @result
-        flash.now[:notice] = "#{@klass.humanized_name(:singular)} - запись удалена."
-        redirect_to @klass.search_path
+        flash.now[:notice] = "Запись удалена."
+        redirect_to "#{@klass.search_path}?parent_id=#{raw_model.parent_id}"
       else
-        flash.now[:alert] = "#{@klass.humanized_name(:singular)} - запись не была удалена."
+        flash.now[:alert] = "Запись не была удалена."
         render(:show)
       end
     end
@@ -119,6 +123,18 @@ module Upmin
     end
 
     private
+      def set_parent
+        if params[:parent_id]
+          params[:q] ||= {}
+          params[:q][:product_category_id_lteq] = params[:parent_id]
+          params[:q][:product_category_id_gteq] = params[:parent_id]
+        end
+      end
+
+      # def set_parent_url
+      #   session[:parent_url] = request.url
+      # end
+
       # TODO(jon): Make the search form fill better than openstruct impl.
       # Temporarily preserve most search form values. This will break if
       # someone wants to search for "2014-09-05" as a string :(

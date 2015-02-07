@@ -26,3 +26,10 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+== TODO
+
+1. Product category: add sorting of products, link to site page
+2. Product: add sorting of photos, link to site page
+3. Product: add sorting of slides

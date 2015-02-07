@@ -1,7 +1,5 @@
-h4
-  | Поиск:
-  '
-  = klass.humanized_name
+h3
+  | Поиск
 
 = form_tag(klass.search_path, method: :get) do
   - klass.attributes.each do |attr_name|

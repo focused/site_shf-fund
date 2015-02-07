@@ -1,0 +1,23 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      = association.title
+      '
+      | (#{association.value.count})
+
+      a.btn.btn-xs.btn-link.pull-right href=""
+        i.fa.fa-code-fork
+        '
+        | Прикрепить
+
+  .panel-body
+    - if association.empty?
+      p
+        | Нет
+
+    - else
+      - association.upmin_values(limit: 30).each do |m|
+        a.active-tag-link href=m.path
+          span.label class=m.color
+            = m.respond_to?(:name) ? m.name : m.title
+

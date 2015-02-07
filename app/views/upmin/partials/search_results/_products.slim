@@ -1,0 +1,17 @@
+- query.upmin_results.each do |result|
+  a.search-result-link href=result.path
+    .upmin-model.upmin-card class=result.color
+      - if result.primary_photo
+        = image_tag result.primary_photo.src.thumb, class: "thumbnail"
+      = result.name
+      br
+      b = result.price
+      /dl.dl-horizontal
+        - result.attributes.select(&:visible_in_results?).each do |attribute|
+          dt
+            = attribute.label_name
+          dd
+            = attribute.value
+
+
+

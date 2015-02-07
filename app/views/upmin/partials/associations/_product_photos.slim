@@ -1,0 +1,35 @@
+.panel.panel-default data-role="uploader"
+  .panel-heading
+    .panel-title
+      = association.title
+      '
+      | (#{association.value.count})
+
+      a.btn.btn-xs.btn-link.pull-right href="" data-role="remove_trigger"
+        i.fa.fa-trash
+        '
+        | Удалить
+
+      a.btn.btn-xs.btn-link.pull-right href="" data-role="upload_trigger"
+        i.fa.fa-upload
+        '
+        | Загрузить
+
+      = form_for ProductPhoto.new, url: product_photos_path, remote: true, html: { style: "display: none" } do |f|
+        = hidden_field_tag :parent_id, model.id
+        = f.file_field :src, multiple: true, style: "display: none"
+
+  = form_for ProductPhoto.new, url: product_photos_path, remote: true, data: { role: "remove_form" }, html: { style: "margin: 0", method: "delete" } do |f|
+    = hidden_field_tag :parent_id, model.id
+    .panel-body data-role="upload-items"
+      - if association.empty?
+        p
+          | Нет
+
+      - else
+        - association.upmin_values(limit: 30).each do |m|
+          .item
+            a.active-tag-link href=m.src target="_blank"
+              = image_tag m.src.thumb, class: "img-thumbnail"
+            = f.hidden_field :id, multiple: true, value: m.id
+            = check_box_tag "product_photo[_remove][]", m.id
