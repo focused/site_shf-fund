@@ -9,10 +9,11 @@
       small
         = "(#{@query.upmin_results.size}, всего #{@klass.count})"
 
-      a.btn.btn-sm.btn-warning.pull-right href=upmin_new_model_path(klass: @klass.model_class_name, parent_id: params[:parent_id])
-        i.fa.fa-plus
-        '
-        | Создать запись
+      - if !@klass.respond_to?(:creatable?) || @klass.creatable?
+        a.btn.btn-sm.btn-warning.pull-right href=upmin_new_model_path(klass: @klass.model_class_name, parent_id: params[:parent_id])
+          i.fa.fa-plus
+          '
+          | Создать запись
 
     - if params[:parent_id] && (category = AdminProductCategory.get(params[:parent_id]))
       ol.breadcrumb
@@ -39,6 +40,7 @@
             li
               b
                 = @model.model_class.human_attribute_name(field)
+              '
               = error
 
   .row

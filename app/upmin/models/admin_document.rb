@@ -5,5 +5,8 @@ class AdminDocument < Upmin::Model
     end
   end
 
+  def deletable?
+    !handler.present? && path != "/"
+  end
 end
 

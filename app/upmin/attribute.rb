@@ -1,11 +1,11 @@
 module Upmin
   class Attribute
     def visible_in_results?
-      %i(handler content description created_at updated_at).none? { |key| key == name }
+      %i(handler content description created_at updated_at real comment).none? { |key| key == name }
     end
 
     def visible_in_model?
-      %i(handler id).none? { |key| key == name }
+      %i(handler id real).none? { |key| key == name }
     end
 
     def label_name

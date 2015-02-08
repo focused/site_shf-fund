@@ -10,6 +10,18 @@ ru:
         path: Сегмент URL
         position: Порядок следования
         updated_at: Дата изменения
+      order:
+        comment: Комментарии
+        company_name: Название компании
+        created_at: Дата создания
+        details_file: Банковские реквизиты
+        email: E-mail
+        name: ФИО
+        order_items: Товарные позиции
+        phone: Телефон
+        real: Действительный
+        state: Состояние
+        updated_at: Дата изменения
       product:
         id: ID
         code: Код продукта
@@ -29,7 +41,7 @@ ru:
         product_photos: Фотографии
         price: Цена (руб.)
         size: Размер
-        updated_at: "Дата изменения"
+        updated_at: Дата изменения
         warranty: Гарантия
         wear_pct: Процент износа
       product_category:
@@ -64,6 +76,9 @@ ru:
       document:
         one: "Web-страница"
         other: "Web-страницы"
+      order:
+        one: "Заказ"
+        other: "Заказы"
       product:
         one: "Товарная позиция"
         other: "Товарные позиции"
@@ -73,9 +88,6 @@ ru:
       product_photo:
         one: "Фотография товара"
         other: "Фотографии товаров"
-      order:
-        one: "Заказ"
-        other: "Заказы"
       setting:
         one: "Настройка"
         other: "Настройки"
@@ -95,6 +107,23 @@ ru:
   order_items:
     index:
       title: Ваша корзина
+
+  orders:
+    states:
+      handled: Обработан
+      new_one: Новый
+
+  settings:
+    contacts:
+      email: Контактный e-mail
+      phone: Контактный телефон
+    social:
+      links:
+        vk: ВКонтакте - ссылка на страницу
+        fb: Facebook - ссылка на страницу
+        inst: Instagram - ссылка на страницу
+    store:
+      email: E-mail менеджера
 
   views:
     pagination:

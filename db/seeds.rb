@@ -7,10 +7,14 @@ p "Seeding Settings..."
 
 create_by = AppData::Seed[Setting]
 
-create_by[key: "manager_email"].(value: ENV["DEFAULT_EMAIL"])
+create_by[key: "store.email"].(value: ENV["DEFAULT_EMAIL"])
 
-create_by[key: "contact_phone"].(value: "+7 (495) 775 48 46")
-create_by[key: "contact_email"].(value: ENV["DEFAULT_EMAIL"])
+create_by[key: "contacts.phone"].(value: "+7 (495) 775 48 46")
+create_by[key: "contacts.email"].(value: ENV["DEFAULT_EMAIL"])
+
+create_by[key: "social.links.vk"].(value: "http://")
+create_by[key: "social.links.fb"].(value: "http://")
+create_by[key: "social.links.inst"].(value: "http://")
 
 
 p "Seeding Document..."

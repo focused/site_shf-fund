@@ -10,6 +10,15 @@ h3
         = label(:q, "#{attr_name}_cont", klass.model_class.human_attribute_name(attr_name))
         = text_field(:q, "#{attr_name}_cont", class: "form-control")
 
+    /- if type == :enum
+      .form-group
+        = label(:q, "#{attr_name}_cont", klass.model_class.human_attribute_name(attr_name))
+        - klass.model_class.send(attr_name.to_s.pluralize).each_with_index do |option, i|
+          label.radio-inline
+            = radio_button_tag :q, "#{attr_name}_cont", option
+            /= model.class.states[option]
+            = t "orders.states.#{klass.model_class.send(attr_name.to_s.pluralize).keys[i]}"
+
     - if type == :integer
       .form-group
         = label(:q, "#{attr_name}_cont", klass.model_class.human_attribute_name(attr_name))

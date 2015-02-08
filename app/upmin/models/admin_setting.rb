@@ -3,6 +3,14 @@ class AdminSetting < Upmin::Model
     def color
       :red
     end
+
+    def creatable?
+      false
+    end
+  end
+
+  def deletable?
+    false
   end
 
 end

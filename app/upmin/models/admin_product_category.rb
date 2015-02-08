@@ -34,5 +34,9 @@ class AdminProductCategory < Upmin::Model
   def new_child_path
     upmin_new_model_path(klass: Product, parent_id: id)
   end
+
+  def app_url
+    model.path
+  end
 end
 

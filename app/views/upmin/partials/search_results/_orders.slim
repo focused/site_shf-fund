@@ -1,0 +1,14 @@
+- query.upmin_results.each do |result|
+  a.search-result-link href=result.path
+    .upmin-model class=result.color
+      dl.dl-horizontal
+        dt
+          | Состояние
+        dd class=result.state_key
+          = t "orders.states.#{result.state_key}"
+      dl.dl-horizontal
+        - result.attributes.select(&:visible_in_results?).reject { |x| x.name == :state }.each do |attribute|
+          dt
+            = attribute.label_name
+          dd
+            = attribute.value.presence || raw("&nbsp;")

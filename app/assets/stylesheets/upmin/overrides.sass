@@ -24,6 +24,26 @@ body
   h4
     white-space: nowrap
 
+.navbar-inverse
+  // border: none
+
+ul.navbar-nav
+  li
+    position: relative
+    .decoration
+      position: absolute
+      bottom: 0
+      left: 1px
+      right: 1px
+      height: 3px
+      z-index: 100
+      background: #ccc
+    @each $color in $color_list
+      $name: nth($color, 1)
+      $hex: nth($color, 2)
+      &.active.#{$name} .decoration
+        background: $hex
+
 .upmin-card
   float: left
   width: 200px
@@ -86,6 +106,10 @@ body
     a.active-tag-link
       display: block
       margin: 0
-
-
+  dl
+    dd
+      &.new_one
+        color: #080
+      // &.handled
+      //   color: #000
 

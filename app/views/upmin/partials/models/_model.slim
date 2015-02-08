@@ -2,13 +2,20 @@
   h3
     = model.title
 
-    .btn-group.pull-right
-      - if model.respond_to?(:add_child_title)
-        = link_to model.new_child_path, class: "btn btn-sm btn-default", title: model.add_child_title do
-          i.fa.fa-plus
-          '
-          = model.add_child_title
+  - if model.respond_to?(:app_url)
+    p
+      | На сайте:
+      '
+      = link_to model.app_url, model.app_url
 
+  .btn-group.pull-right
+    - if model.respond_to?(:add_child_title)
+      = link_to model.new_child_path, class: "btn btn-sm btn-default", title: model.add_child_title do
+        i.fa.fa-plus
+        '
+        = model.add_child_title
+
+    - if !model.respond_to?(:deletable?) || model.deletable?
       = link_to model.path, method: :delete, class: "btn btn-sm btn-danger delete", title: "Удалить #{model.title}", data: { confirm: "Вы уверены?" } do
         i.fa.fa-trash-o.fa-lg
         '

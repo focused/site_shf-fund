@@ -20,5 +20,9 @@ class AdminProduct < Upmin::Model
   def primary_photo
     product_photos.first
   end
+
+  def app_url
+    [get_parent.path, path_id].join("/")
+  end
 end
 
