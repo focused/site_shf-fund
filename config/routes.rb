@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # Cart
   get "cart" => "orders#show", as: "cart"
-  resources :order, only: %w(show update)
+  resources :orders, only: %w(show update)
   resources :order_items, only: %w(create update)
 
   # Catalog
