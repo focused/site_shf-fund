@@ -4,10 +4,21 @@
   position: relative
   padding: 27px 368px 0 0
   min-height: 530px
+  .btn
+    $v_pad: 11px
+    float: left
+    height: 38px - $v_pad
+    padding: $v_pad 15px 0
+    font-size: 14px
+    text-align: center
+    background: $bg_service
+    &:hover
+      color: inherit
   table
     width: 100%
     border-collapse: collapse
     font-size: 14px
+    margin: 0 0 28px
     // background: #cbcbcb
     th, td
       padding: 10px
