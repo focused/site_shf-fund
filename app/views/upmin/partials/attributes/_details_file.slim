@@ -2,4 +2,5 @@
   label for=attribute.form_id
     = attribute.label_name
   p
-    = link_to File.basename(model.model.details_file.url), model.model.details_file.url
+    - if model.model.details_file.url
+      = link_to File.basename(model.model.try(:details_file).try(:url)), model.model.try(:details_file).try(:url)

@@ -1,3 +1,41 @@
+sass:
+  table
+    width: 100%
+    border-collapse: collapse
+    font-size: 14px
+    // background: #cbcbcb
+    th, td
+      padding: 10px
+      text-align: center
+      vertical-align: middle
+      background: #fff
+      border: 1px solid #cbcbcb
+    thead
+      th
+        height: 33px
+        // white-space: nowrap
+        &.count
+          // width: 118px
+    tbody
+      td
+        &.sum
+          font-size: 17px
+        &.count
+          // width: 118px
+          img
+            cursor: pointer
+          img, input
+            float: left
+        input
+          height: 18px
+          padding: 3px
+          margin: 0
+          border: 1px solid #cbcbcb
+          border-left: none
+          border-right: none
+          text-align: center
+          width: 34px
+
 - unless model.respond_to?(:parent_association?) && model.parent_association?(association)
   .panel.panel-default
     .panel-heading
@@ -6,12 +44,6 @@
         '
         | (#{association.value.count})
 
-        /- if association.collection?
-          a.btn.btn-xs.btn-link.pull-right href=upmin_new_model_path(klass: association.name.to_s.classify, parent_id: model.id)
-            i.fa.fa-plus
-            '
-            | Добавить
-
     .panel-body
 
       - if association.empty?
@@ -19,8 +51,25 @@
           | Нет
 
       - else
-        - association.upmin_values(limit: 30).each do |m|
-          a.active-tag-link href=m.path
-            span.label class=m.color
-              = m.respond_to?(:name) ? m.name : m.title
+        table
+          thead
+            tr
+              th Продукт
+              th Код продукта
+              th Цена, руб.
+              th.count width="99" Количество
+              th Сумма, руб.
+          tbody
+            - association.upmin_values(limit: 30).each do |item|
+              tr
+                td
+                  img src=item.product.try(:product_photos).try(:first).try(:src).try(:order_item)
+                td = item.product.try(:code)
+                td = number_to_currency(item.price, precision: 0, unit: "")
+                td = item.count.to_i
+                td = number_to_currency(item.count.to_i * item.price, precision: 0, unit: "")
+            tr
+              td.sum colspan="5"
+                | Итого: сумма заказа составляет #{number_to_currency(model.sum, precision: 0)}, включая НДС- 18%
+
 
