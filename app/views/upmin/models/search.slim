@@ -7,7 +7,7 @@
       = @klass.humanized_name
       '
       small
-        = "(#{@query.upmin_results.size}, всего #{@klass.count})"
+        = "(#{@query.upmin_results.size}, всего #{@klass.model_class.attribute_names.include?("real") ? @klass.where(real: true).count : @klass.count})"
 
       - if !@klass.respond_to?(:creatable?) || @klass.creatable?
         a.btn.btn-sm.btn-warning.pull-right href=upmin_new_model_path(klass: @klass.model_class_name, parent_id: params[:parent_id])

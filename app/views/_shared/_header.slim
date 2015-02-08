@@ -13,7 +13,7 @@ header
     span.spacer |
     a.item href=app_document_path("cart")
       img src=image_url("cart.png")
-      | Корзина (0)
+      | Корзина (#{client_order.order_items.size})
 
   = simple_form_for :search do |f|
     = f.input :value, label: false, placeholder: "Поиск"
