@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def not_found
     render file: "public/404", layout: false
   end
+
+  def client_order
+    @client_order ||= Order.new
+  end
 end

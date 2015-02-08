@@ -7,8 +7,6 @@ class Slide < ActiveRecord::Base
 
   after_destroy :clear_files
 
-  validates :position, numericality: { only_integer: true }
-
   private
 
   # delete attached file and its versions if present

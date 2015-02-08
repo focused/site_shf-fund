@@ -20,8 +20,10 @@ header
     = f.submit "", class: "submit"
 
   .contacts
-    a.phone href="tel:+74957754846" +7 (495) 775 48 46
-    a.email href="mailto:moscow@mail.ru" moscow@mail.ru
+    a.phone href="tel:#{Setting.get(:contact_phone).try(:gsub, /\s|[()]/, '')}"
+      = Setting.get(:contact_phone)
+    a.email href="mailto:#{Setting.get(:contact_email)}"
+      = Setting.get(:contact_email)
 
   = render "catalog/menu"
 

@@ -3,6 +3,16 @@ require 'ffaker'
 # ------------------------------------------------------------------------------
 # App
 
+p "Seeding Settings..."
+
+create_by = AppData::Seed[Setting]
+
+create_by[key: "manager_email"].(value: ENV["DEFAULT_EMAIL"])
+
+create_by[key: "contact_phone"].(value: "+7 (495) 775 48 46")
+create_by[key: "contact_email"].(value: ENV["DEFAULT_EMAIL"])
+
+
 p "Seeding Document..."
 
 create_by = AppData::Seed[Document]
@@ -109,7 +119,7 @@ categories = {
   }]
 }
 
-Product.destroy_all if Rails.env.development?
+# Product.destroy_all if Rails.env.development?
 
 # main categories
 categories.each_with_index do |(parent_key, parent_data), parent_index|
@@ -125,59 +135,59 @@ categories.each_with_index do |(parent_key, parent_data), parent_index|
         .where(name: value, path: "/#{parent_key}/#{key}")
         .first_or_create!
 
-    next if parent_index > 1 || i > 1
-    (16 * (1 - i) + rand(5)).times do |j|
-      name = Faker::Product.product
+    # next if parent_index > 1 || i > 1
+    # (16 * (1 - i) + rand(5)).times do |j|
+    #   name = Faker::Product.product
 
-      product = Product.create!(
-        product_category: category,
-        path_id: name.downcase.gsub(' ', '_'),
-        name: name,
-        factory_url: Faker::Internet.http_url,
-        factory: Faker::Company.name,
-        factory_country: "Финляндия",
-        description: Faker::HipsterIpsum.paragraphs.join(" "),
-        fabric: Faker::Color.name,
-        size: "L-100 см., W-12 см., H-134 см.",
-        wear_pct: rand(0..49) + rand,
-        code: Faker::Product.model,
-        warranty: (n = rand(0..2)) > 0 ? "#{n} year(s)" : "",
-        price: rand(1..199) * 500
-      )
+    #   product = Product.create!(
+    #     product_category: category,
+    #     path_id: name.downcase.gsub(' ', '_'),
+    #     name: name,
+    #     factory_url: Faker::Internet.http_url,
+    #     factory: Faker::Company.name,
+    #     factory_country: "Финляндия",
+    #     description: Faker::HipsterIpsum.paragraphs.join(" "),
+    #     fabric: Faker::Color.name,
+    #     size: "L-100 см., W-12 см., H-134 см.",
+    #     wear_pct: rand(0..49) + rand,
+    #     code: Faker::Product.model,
+    #     warranty: (n = rand(0..2)) > 0 ? "#{n} year(s)" : "",
+    #     price: rand(1..199) * 500
+    #   )
 
-      next if j > 10
-      # product photos
-      (rand(1..5)).times do
-        photo = ProductPhoto.new(product: product)
-        photo.src = File.open(Rails.root.join("app/assets/images/product_sample_#{rand(0..3)}_big.jpg"))
-        photo.save!
-      end
-    end
+    #   next if j > 10
+    #   # product photos
+    #   (rand(1..5)).times do
+    #     photo = ProductPhoto.new(product: product)
+    #     photo.src = File.open(Rails.root.join("app/assets/images/product_sample_#{rand(0..3)}_big.jpg"))
+    #     photo.save!
+    #   end
+    # end
   end
 end
 
 p "ProductCategory: #{ProductCategory.count}, Product: #{Product.count}"
 
 # product couples
-id_range = (Product.minimum(:id)..Product.maximum(:id) - 4)
-Product.all.each do |product|
-  id = rand(id_range)
+# id_range = (Product.minimum(:id)..Product.maximum(:id) - 4)
+# Product.all.each do |product|
+#   id = rand(id_range)
 
-  product.product_couples = (0..rand(5) - 1)
-    .lazy
-    .map { |n| id + n }
-    .map(&Product.method(:find))
-    .reject { |couple| couple.id == product.id }
-    .to_a
-end
+#   product.product_couples = (0..rand(5) - 1)
+#     .lazy
+#     .map { |n| id + n }
+#     .map(&Product.method(:find))
+#     .reject { |couple| couple.id == product.id }
+#     .to_a
+# end
 
 
 # ------------------------------------------------------------------------------
 # Other
-Slide.destroy_all if Rails.env.development?
-5.times do
-  Slide.create!(
-    content: "<p>#{Faker::HipsterIpsum.sentence}</p>",
-    src: File.open(Rails.root.join("app/assets/images/slider_sample.jpg"))
-  )
-end
+# Slide.destroy_all if Rails.env.development?
+# 5.times do
+#   Slide.create!(
+#     content: "<p>#{Faker::HipsterIpsum.sentence}</p>",
+#     src: File.open(Rails.root.join("app/assets/images/slider_sample.jpg"))
+#   )
+# end

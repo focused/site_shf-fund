@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207073638) do
+ActiveRecord::Schema.define(version: 20150208075345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,19 @@ ActiveRecord::Schema.define(version: 20150207073638) do
   end
 
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "name",         default: "",    null: false
+    t.string   "company_name", default: "",    null: false
+    t.string   "phone",        default: "",    null: false
+    t.string   "email",        default: "",    null: false
+    t.string   "details_file"
+    t.text     "comment",      default: "",    null: false
+    t.boolean  "real",         default: false, null: false
+    t.string   "status",       default: "new", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "product_categories", force: :cascade do |t|
     t.integer  "product_category_id"
@@ -109,6 +122,14 @@ ActiveRecord::Schema.define(version: 20150207073638) do
   add_index "products", ["position"], name: "index_products_on_position", using: :btree
   add_index "products", ["product_category_id", "path_id"], name: "index_products_on_product_category_id_and_path_id", unique: true, using: :btree
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
+
+  create_table "settings", force: :cascade do |t|
+    t.string  "key",      null: false
+    t.string  "value"
+    t.integer "position"
+  end
+
+  add_index "settings", ["position"], name: "index_settings_on_position", using: :btree
 
   create_table "slides", force: :cascade do |t|
     t.string  "src"

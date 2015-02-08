@@ -7,7 +7,9 @@ Upmin::Engine.routes.draw do
 end
 
 Rails.application.routes.draw do
-  resources :order_items
+  resources :order, only: %w(update)
+
+  resources :order_items, only: %w(index create)
 
   mount Upmin::Engine => '/admin'
   mount Ckeditor::Engine => '/ckeditor'

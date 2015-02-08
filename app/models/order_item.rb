@@ -2,6 +2,7 @@ class OrderItem < ActiveRecord::Base
   alias_attribute :parent_id, :product_id
 
   belongs_to :product
+  belongs_to :order
 
   scope :ordered, -> { order(:created_at) }
 

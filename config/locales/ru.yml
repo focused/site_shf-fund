@@ -48,6 +48,11 @@ ru:
         product_id: Товарная позиция
         product: Товарная позиция
         src: Изображение
+      setting:
+        id: ID
+        key: Ключ
+        position: Порядок отображения
+        value: Значение
       slide:
         id: ID
         content: Содержимое
@@ -71,6 +76,9 @@ ru:
       order:
         one: "Заказ"
         other: "Заказы"
+      setting:
+        one: "Настройка"
+        other: "Настройки"
       slide:
         one: "Слайд"
         other: "Слайды"
