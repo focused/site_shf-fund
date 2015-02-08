@@ -16,7 +16,7 @@ module Catalog
     end
 
     def subcategories
-      parent_category.product_categories
+      parent_category.product_categories.ordered
     end
 
     def main_photo_url

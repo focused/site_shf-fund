@@ -1,0 +1,40 @@
+h3
+  | Поиск
+
+= form_tag(klass.search_path, method: :get) do
+  .form-group
+    = label(:q, "state_cont", klass.model_class.human_attribute_name("state"))
+    - klass.model_class.send(:states).each_with_index do |option, i|
+      label.radio
+        = radio_button_tag :q, "state_cont", option
+        /= model.class.states[option]
+        = t "orders.states.#{klass.model_class.send(:states).keys[i]}"
+
+  - klass.attributes.reject { |x| x == :state }.each do |attr_name|
+    - type = klass.attribute_type(attr_name)
+
+    - if type == :string
+      .form-group
+        = label(:q, "#{attr_name}_cont", klass.model_class.human_attribute_name(attr_name))
+        = text_field(:q, "#{attr_name}_cont", class: "form-control")
+
+    - if type == :integer
+      .form-group
+        = label(:q, "#{attr_name}_cont", klass.model_class.human_attribute_name(attr_name))
+        .input-group
+          .input-group-addon От
+          = number_field(:q, "#{attr_name}_gteq", class: "form-control")
+          .input-group-addon До
+          = number_field(:q, "#{attr_name}_lteq", class: "form-control")
+
+    - if type == :datetime && Rails::VERSION::MAJOR == 4
+      .form-group
+        = label(:q, "#{attr_name}_cont", klass.model_class.human_attribute_name(attr_name))
+        br
+        | От
+        = date_field(:q, "#{attr_name}_gteq", class: "form-control")
+        | До
+        = date_field(:q, "#{attr_name}_lteq", class: "form-control")
+
+  = submit_tag("Поиск", class: "btn btn-primary btn-block")
+  = link_to("Очистить фильтр", klass.search_path, class: "btn btn-default btn-block")

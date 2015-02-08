@@ -12,7 +12,7 @@ class ProductCategory < ActiveRecord::Base
 
   class << self
     def main_with_secondary
-      main.includes(:product_categories)
+      main.includes(:product_categories).ordered
     end
 
     def main

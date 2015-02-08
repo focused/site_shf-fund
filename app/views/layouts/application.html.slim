@@ -32,6 +32,8 @@ html
 
     = render "_shared/footer"
 
+    = raw Setting.get("blocks.after_all")
+
     = javascript_include_tag "after_all"
 
 

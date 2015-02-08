@@ -114,6 +114,8 @@ ru:
       new_one: Новый
 
   settings:
+    blocks:
+      after_all: Дополнительные скрипты страницы
     contacts:
       email: Контактный e-mail
       phone: Контактный телефон

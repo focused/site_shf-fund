@@ -1,6 +1,6 @@
 - query.upmin_results.each do |result|
   a.search-result-link href=result.path
-    .upmin-model class=result.color
+    .upmin-model class="#{result.color} #{result.state_key}"
       dl.dl-horizontal
         dt
           | Состояние

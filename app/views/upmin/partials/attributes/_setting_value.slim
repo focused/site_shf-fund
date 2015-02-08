@@ -1,0 +1,5 @@
+- if model.kind == "text"
+  = render partial: "upmin/partials/attributes/text", locals: { attribute: attribute, model: model, form_builder: form_builder }
+
+- else
+  = render partial: "upmin/partials/attributes/string", locals: { attribute: attribute, model: model, form_builder: form_builder }

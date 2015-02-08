@@ -15,6 +15,7 @@ create_by[key: "contacts.email"].(value: ENV["DEFAULT_EMAIL"])
 create_by[key: "social.links.vk"].(value: "http://")
 create_by[key: "social.links.fb"].(value: "http://")
 create_by[key: "social.links.inst"].(value: "http://")
+create_by[key: "blocks.after_all"].(value: "", kind: "text")
 
 
 p "Seeding Document..."

@@ -1,7 +1,11 @@
 - query.upmin_results.each do |result|
   a.search-result-link href=result.path
     .upmin-model class=result.color
-      dl.dl-horizontal
+      b = t "settings.#{result.key}"
+      | :
+      br
+      = result.value
+      /dl.dl-horizontal
         dt
           = t "settings.#{result.key}"
         dd

@@ -7,9 +7,6 @@ Upmin::Engine.routes.draw do
 end
 
 Rails.application.routes.draw do
-  resources :order, only: %w(update)
-
-  resources :order_items, only: %w(index create)
 
   mount Upmin::Engine => '/admin'
   mount Ckeditor::Engine => '/ckeditor'
@@ -18,8 +15,9 @@ Rails.application.routes.draw do
     constraints: -> params, _ { Catalog::ProductCategoryDocument.(params[:path]) }
 
   # Cart
-  get "cart" => "order_items#index"
-  resources :order_items, only: %w(index create update destroy)
+  get "cart" => "orders#show", as: "cart"
+  resources :order, only: %w(show update)
+  resources :order_items, only: %w(create update)
 
   # Catalog
   namespace :catalog do

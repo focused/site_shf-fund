@@ -3,7 +3,7 @@ class OrderDocument
   end
 
   def items
-    @items ||= OrderItem.ordered
+    # @items ||= OrderItem.ordered
   end
 
   def breadcrumbs

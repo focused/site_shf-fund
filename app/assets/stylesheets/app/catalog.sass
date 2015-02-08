@@ -123,16 +123,17 @@ section.extra
     .price
       float: left
       padding: 6px 0 0
-    a.add_to_cart
-      $v_pad: 11px
-      float: right
-      height: 38px - $v_pad
-      padding: $v_pad 15px 0
-      font-size: 14px
-      text-align: center
-      background: #cacaca
-      &:hover
-        color: #635b59
+    form.new_order_item, form.edit_order_item
+      .add_to_cart
+        $v_pad: 11px
+        float: right
+        height: 38px - $v_pad
+        padding: $v_pad 15px 0
+        font-size: 14px
+        text-align: center
+        background: #cacaca
+        &:hover
+          color: #635b59
     p
       .attribute
         display: inline-block

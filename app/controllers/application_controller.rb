@@ -10,6 +10,23 @@ class ApplicationController < ActionController::Base
   end
 
   def client_order
-    @client_order ||= Order.new
+    return @order if @order
+
+    @order =
+      if session["store.current_order_id"]
+        res = Order.find_by(id: session["store.current_order_id"])
+        unless res
+          res = Order.create
+          session["store.current_order_id"] = res.id
+        end
+        res
+      else
+        Order.create
+      end
+
+    session["store.current_order_id"] ||= @order.id
+
+    @order
   end
+  helper_method :client_order
 end

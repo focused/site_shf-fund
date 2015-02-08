@@ -1,0 +1,60 @@
+@import "base"
+
+.cart
+  position: relative
+  padding: 27px 368px 0 0
+  min-height: 530px
+  table
+    width: 100%
+    border-collapse: collapse
+    font-size: 14px
+    // background: #cbcbcb
+    th, td
+      text-align: center
+      vertical-align: middle
+      background: #fff
+      border: 1px solid #cbcbcb
+    thead
+      th
+        height: 33px
+    tbody
+      td
+        padding: 5px
+        &.sum
+          font-size: 17px
+  .controls
+    position: absolute
+    right: 0
+    top: 27px
+    width: 330px
+    font-size: 14px
+    p
+      margin: 0 0 5px
+    form
+      background: $bg_service
+      padding: 20px
+      ::placeholder
+        color: $text_dark
+      input
+        height: 24px
+        padding: 5px 10px
+        border: 1px solid #cbcbcb
+        width: 270px
+        margin-bottom: 12px
+        &[type=submit]
+          color: #fff
+          background: #999796
+          border: none
+          font-size: 18px
+          margin: 0
+          height: 40px
+          padding: 0
+          width: 100%
+    .links
+      // +font-main-medium
+      font-size: 18px
+      a
+        padding-top: 10px
+        height: 28px
+        margin: 15px 0 0
+
