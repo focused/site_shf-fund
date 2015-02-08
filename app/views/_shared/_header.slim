@@ -12,7 +12,10 @@ header
     a.item href=app_document_path("contacts") Контакты
     span.spacer |
     a.item href=app_document_path("cart")
-      img src=image_url("cart.png")
+      - if client_order.order_items.size > 0
+        img src=image_url("cart_full.png") style="margin-top: -25px"
+      - else
+        img src=image_url("cart.png")
       | Корзина (#{client_order.order_items.size})
 
   = simple_form_for :search do |f|
