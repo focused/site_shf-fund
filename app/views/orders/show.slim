@@ -1,44 +1,49 @@
 .cart
-  - if client_order.order_items.any?
-    table
-      thead
-        tr
-          th Продукт
-          th Код продукта
-          th Цена, руб.
-          th Количество
-          th Сумма, руб.
-      tbody
-        - client_order.order_items.each do |item|
+  = simple_form_for client_order do |f|
+    - if client_order.order_items.any?
+      table
+        thead
           tr
-            td
-              img src=item.product.try(:product_photos).try(:first).try(:src).try(:order_item)
-            td = item.product.try(:code)
-            td = number_to_currency(item.price, precision: 0, unit: "")
-            td = item.count.to_i
-            td = number_to_currency(item.count.to_i * item.price, precision: 0, unit: "")
-        tr
-          td.sum colspan="5"
-            | Итого: сумма заказа составляет #{number_to_currency(client_order.sum, precision: 0)}, включая НДС- 18%
-  - else
-    p
-      - if notice.present?
-        = notice
-      - else
-        | Ваша корзина пуста
+            th Продукт
+            th Код продукта
+            th Цена, руб.
+            th.count width="99" Количество
+            th Сумма, руб.
+        tbody
+          - client_order.order_items.each do |item|
+            tr
+              td
+                img src=item.product.try(:product_photos).try(:first).try(:src).try(:order_item)
+              td = item.product.try(:code)
+              td = number_to_currency(item.price, precision: 0, unit: "")
+              td.count
+                img.minus src=image_url("minus.png")
+                = text_field_tag "count[#{item.id}]", item.count.to_i
+                img.plus src=image_url("plus.png")
+              td = number_to_currency(item.count.to_i * item.price, precision: 0, unit: "")
+          tr
+            td.sum colspan="5"
+              | Итого: сумма заказа составляет #{number_to_currency(client_order.sum, precision: 0)}, включая НДС- 18%
+    - else
+      p
+        - if notice.present?
+          = notice
+        - else
+          | Ваша корзина пуста
 
 
-  .controls
-    /- if client_order.order_items.any?
-    p
-      | Заполните, пожалуйста, свои реквизиты для оформления заказа
-    = simple_form_for client_order do |f|
-      = f.input :company_name, label: false, placeholder: Order.human_attribute_name(:company_name)
-      = f.input :name, label: false, placeholder: Order.human_attribute_name(:name)
-      = f.input :phone, label: false, placeholder: "Телефон: +7 (***) *** ** **"
-      = f.input :email, label: false, placeholder: Order.human_attribute_name(:email)
-      = f.input :details_file, as:"file", label: "Загрузить банковские реквизиты (.doc, .xls)"
+    .controls
+      /- if client_order.order_items.any?
+      p
+        | Заполните, пожалуйста, свои реквизиты для оформления заказа
 
-      = f.submit "Оформить заказ >>", disabled: client_order.order_items.none?
+      .form
+        = f.input :company_name, label: false, placeholder: Order.human_attribute_name(:company_name)
+        = f.input :name, label: false, placeholder: Order.human_attribute_name(:name)
+        = f.input :phone, label: false, placeholder: "Телефон: +7 (***) *** ** **"
+        = f.input :email, label: false, placeholder: Order.human_attribute_name(:email)
+        = f.input :details_file, as:"file", label: "Загрузить банковские реквизиты (.doc, .xls)"
 
-    = render "_shared/links"
+        = f.submit "Оформить заказ >>", disabled: client_order.order_items.none?
+
+      = render "_shared/links"

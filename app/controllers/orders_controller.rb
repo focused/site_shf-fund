@@ -6,6 +6,12 @@ class OrdersController < ApplicationController
   end
 
   def update
+    if params[:count]
+      params[:count].each do |id, value|
+        OrderItem.find(id).update(count: value)
+      end
+    end
+
     client_order.real = true
     if client_order.update(order_params)
       session["store.current_order_id"] = nil

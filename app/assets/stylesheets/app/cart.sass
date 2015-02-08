@@ -10,6 +10,7 @@
     font-size: 14px
     // background: #cbcbcb
     th, td
+      padding: 10px
       text-align: center
       vertical-align: middle
       background: #fff
@@ -17,11 +18,28 @@
     thead
       th
         height: 33px
+        // white-space: nowrap
+        &.count
+          // width: 118px
     tbody
       td
-        padding: 5px
         &.sum
           font-size: 17px
+        &.count
+          // width: 118px
+          img
+            cursor: pointer
+          img, input
+            float: left
+        input
+          height: 18px
+          padding: 3px
+          margin: 0
+          border: 1px solid #cbcbcb
+          border-left: none
+          border-right: none
+          text-align: center
+          width: 34px
   .controls
     position: absolute
     right: 0
@@ -30,7 +48,7 @@
     font-size: 14px
     p
       margin: 0 0 5px
-    form
+    .form
       background: $bg_service
       padding: 20px
       ::placeholder

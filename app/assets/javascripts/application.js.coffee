@@ -5,3 +5,4 @@
 
 //= require catalog_menu
 //= require products
+//= require orders
