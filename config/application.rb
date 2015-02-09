@@ -51,12 +51,12 @@ module ShfFund
     config.action_mailer.smtp_settings = {
       address: ENV["SMTP_ADDRESS"],
       port: 2525,
+      domain: "furniturefund.ru",
       user_name: ENV["SMTP_USER_NAME"],
       password: ENV["SMTP_PASSWORD"],
       authentication: "plain",
-      enable_starttls_auto: true,
+      enable_starttls_auto: true
       # ssl: true,
-      domain: ""
     }
 
     config.assets.paths << Rails.root.join("vendor/assets/bootstrap")

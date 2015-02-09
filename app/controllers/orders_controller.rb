@@ -14,7 +14,9 @@ class OrdersController < ApplicationController
 
     client_order.real = true
     if client_order.update(order_params)
+      OrderMailer.new_order(client_order).deliver
       session["store.current_order_id"] = nil
+
       redirect_to cart_path, notice: <<-MSG
         Спасибо, мы заказ приняли.
         В течение ближайшего дня специалист свяжется с Вами и уточнит детали заказа.

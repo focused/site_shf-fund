@@ -5,7 +5,7 @@ module Upmin
     end
 
     def visible_in_model?
-      %i(handler id real).none? { |key| key == name }
+      %i(handler id real kind).none? { |key| key == name }
     end
 
     def label_name
