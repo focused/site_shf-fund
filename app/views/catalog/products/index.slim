@@ -1,5 +1,5 @@
 .content
-  - if @products
+  - if @products && @products.any?
     - @products.each_with_index do |product, i|
       - card = Catalog::ProductCard.new(product)
       h3
@@ -21,3 +21,6 @@
 
         br
         br
+  - else
+    p
+      | По вашему запросу ничего не найдено.
