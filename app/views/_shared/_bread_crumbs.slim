@@ -2,7 +2,10 @@
   .bread_crumbs
     a href=root_path Главная
     = " / "
-    - @document.breadcrumbs.each do |name, url|
-      a href=url = name
-      = " / "
-    span = @document.breadcrumb_name
+    - if @document
+      - @document.breadcrumbs.each do |name, url|
+        a href=url = name
+        = " / "
+      span = @document.breadcrumb_name
+    - else
+      span = "Поиск"

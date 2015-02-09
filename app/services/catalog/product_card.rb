@@ -17,8 +17,6 @@ module Catalog
       primary_photo && primary_photo.src.main_preview
     end
 
-    private
-
     def product_category_path
       product.product_category && product.product_category.path
     end

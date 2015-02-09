@@ -1,0 +1,23 @@
+.content
+  - if @products
+    - @products.each_with_index do |product, i|
+      - card = Catalog::ProductCard.new(product)
+      h3
+        = i + 1
+        |.
+        '
+        = product.name
+        br
+        small
+          = link_to card.url, card.url
+      p
+        = product.factory
+        | ,
+        '
+        = product.code
+        | ,
+        '
+        b = number_to_currency(product.price, precision: 0)
+
+        br
+        br

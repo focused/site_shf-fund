@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   # Catalog
   namespace :catalog do
+    resources :products, only: %w() do
+      post :index, on: :collection
+    end
     resources :product_categories, only: %w(show)
   end
   get "*path/:path_id" => "catalog/products#show",

@@ -18,8 +18,8 @@ header
         img src=image_url("cart.png")
       | Корзина (#{client_order.order_items.size})
 
-  = simple_form_for :search do |f|
-    = f.input :value, label: false, placeholder: "Поиск"
+  = simple_form_for :search, url: catalog_products_path do |f|
+    = f.input :query, label: false, placeholder: "Поиск"
     = f.submit "", class: "submit"
 
   .contacts
