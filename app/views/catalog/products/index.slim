@@ -9,7 +9,7 @@
         = product.name
         br
         small
-          = link_to card.url, card.url
+          = link_to (root_url + card.url), url_for(card.url)
       p
         = product.factory
         | ,
