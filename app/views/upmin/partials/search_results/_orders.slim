@@ -7,7 +7,7 @@
         dd class=result.state_key
           = t "orders.states.#{result.state_key}"
       dl.dl-horizontal
-        - result.attributes.select(&:visible_in_results?).reject { |x| x.name == :state }.each do |attribute|
+        - result.attributes.select(&:visible_in_results?).reject { |x| x.name == :state || x.name == :details_file }.each do |attribute|
           dt
             = attribute.label_name
           dd
