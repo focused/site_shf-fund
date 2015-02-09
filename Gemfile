@@ -48,6 +48,8 @@ gem 'upmin-admin', github: 'upmin/upmin-admin-ruby', ref: '86d2382'
 gem "carrierwave"
 gem "mini_magick"
 gem 'remotipart', '~> 1.2'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # UI
 gem "ckeditor", git: "git://github.com/galetahub/ckeditor.git"

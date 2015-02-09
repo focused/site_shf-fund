@@ -34,8 +34,10 @@
 
     a.btn href=(session[:last_catalog_path])
       | Вернуться к покупкам >>
-    a.btn href=""
-      | Сохранить спецификацию >>
+
+    - if client_order.order_items.any?
+      a.btn href="" data-role="gen_specification"
+        | Сохранить спецификацию >>
 
 
     .controls

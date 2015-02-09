@@ -1,0 +1,22 @@
+.cart
+  .row
+    table
+      thead
+        tr
+          th Продукт
+          th Код продукта
+          th Цена, руб.
+          th.count width="99" Количество
+          th Сумма, руб.
+      tbody
+        - client_order.order_items.each do |item|
+          tr
+            td
+              = wicked_pdf_image_tag item.product.try(:product_photos).try(:first).try(:src).try(:order_item)
+            td = item.product.try(:code)
+            td = number_to_currency(item.price, precision: 0, unit: "")
+            td = item.count.to_i
+            td = number_to_currency(item.count.to_i * item.price, precision: 0, unit: "")
+        tr
+          td.sum colspan="5"
+            | Итого: сумма заказа составляет #{number_to_currency(client_order.sum, precision: 0)}, включая НДС- 18%

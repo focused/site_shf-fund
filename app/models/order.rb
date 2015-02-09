@@ -10,6 +10,9 @@ class Order < ActiveRecord::Base
   validates :name, :company_name, :phone, :email, :details_file, presence: true, if: -> x { x.real? }
 
   def sum
-    order_items.map(&:price).reduce(:+)
+    order_items
+      .lazy
+      .map { |x| x.price * x.count }
+      .reduce(:+)
   end
 end
