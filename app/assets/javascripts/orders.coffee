@@ -16,5 +16,7 @@ $ ->
 
     prev_action = $form.attr "action"
     $form.attr "action", "#{prev_action}.pdf"
+    $form.attr "target", "_blank"
     $form.submit()
-    # $form.attr "action", prev_action
+    $form.attr "action", prev_action
+    $form.attr "target", "_self"
