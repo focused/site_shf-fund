@@ -1,0 +1,74 @@
+@import "base"
+
+
+
+$pad: 36px
+.header
+  position: relative
+  margin-top: 0
+  padding-bottom: 40px
+  overflow: visible
+  .logo
+    font-size: 32px
+    text-transform: uppercase
+    background: $bg_main
+    width: 285px
+    height: 75px
+    padding: 7px 15px
+    span
+      display: block
+      color: $text_light
+      font-size: 22px
+      text-decoration: none
+      width: 250px
+  .contacts
+    position: absolute
+    right: 0
+    top: 0
+    width: 207px
+    text-align: right
+    font-size: 17px
+    word-wrap: nowrap
+    span
+      display: block
+    .email
+      font-size: 19px
+.notes
+  font-size: 14px
+table
+  width: 100%
+  border-collapse: collapse
+  // font-size: 15px
+  margin: 0 0 28px
+  // background: #cbcbcb
+  th, td
+    padding: 10px
+    text-align: center
+    vertical-align: middle
+    background: #fff
+    border: 1px solid #cbcbcb
+  thead
+    th
+      height: 33px
+      // white-space: nowrap
+      &.count
+        // width: 118px
+  tbody
+    td
+      &.sum
+        font-size: 17px
+      &.count
+        // width: 118px
+        img
+          cursor: pointer
+        img, input
+          float: left
+      input
+        height: 18px
+        padding: 3px
+        margin: 0
+        border: 1px solid #cbcbcb
+        border-left: none
+        border-right: none
+        text-align: center
+        width: 34px

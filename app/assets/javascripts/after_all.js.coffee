@@ -1,6 +1,14 @@
 //= require_self
 
 $ ->
+  $("form input").placeholder()
+
+
+  m = $("[data-role=slider] > div").length
+  n = parseInt(Math.random() * m)
+  n = m - 1 if n > m - 1
+
+  # console.log n
   $("[data-role=slider]").slick
     # fade: true
     speed: 500
@@ -15,6 +23,8 @@ $ ->
     variableWidth: true
     dots: true
     cssEase: 'linear'
+    initialSlide: n
+    pauseOnHover: false
     # slide: 'div'
 
   # $("[data-role=slider]")

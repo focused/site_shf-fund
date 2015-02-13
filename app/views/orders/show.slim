@@ -23,7 +23,10 @@
               td = number_to_currency(item.count.to_i * item.price, precision: 0, unit: "")
           tr
             td.sum colspan="5"
-              | Итого: сумма заказа составляет #{number_to_currency(client_order.sum, precision: 0)}, включая НДС- 18%
+              | Итого: сумма заказа составляет
+              '
+              b = number_to_currency(client_order.sum, precision: 0)
+              | , включая НДС - 18%
     - else
       p
         - if notice.present?
@@ -55,3 +58,6 @@
         = f.submit "Оформить заказ >>", disabled: client_order.order_items.none?
 
       = render "_shared/links"
+
+
+

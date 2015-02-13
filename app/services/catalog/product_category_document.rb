@@ -27,6 +27,10 @@ module Catalog
         .offset(page * size)
     end
 
+    def any_products?
+      Product.all_products(category).any?
+    end
+
     def has_more_products?
       all_products(1).any?
     end

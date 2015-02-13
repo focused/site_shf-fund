@@ -4,43 +4,15 @@ html
     meta charset=Rails.application.config.encoding
     meta content="text/html; charset=#{Rails.application.config.encoding}" http-equiv="Content-Type"
     title = page_title
-    sass:
-      table
-        width: 100%
-        border-collapse: collapse
-        font-size: 14px
-        margin: 0 0 28px
-        // background: #cbcbcb
-        th, td
-          padding: 10px
-          text-align: center
-          vertical-align: middle
-          background: #fff
-          border: 1px solid #cbcbcb
-        thead
-          th
-            height: 33px
-            // white-space: nowrap
-            &.count
-              // width: 118px
-        tbody
-          td
-            &.sum
-              font-size: 17px
-            &.count
-              // width: 118px
-              img
-                cursor: pointer
-              img, input
-                float: left
-            input
-              height: 18px
-              padding: 3px
-              margin: 0
-              border: 1px solid #cbcbcb
-              border-left: none
-              border-right: none
-              text-align: center
-              width: 34px
+
+    = wicked_pdf_stylesheet_link_tag "app/_pdf_layout"
+
   body
+    .header
+      .logo
+        span = t("_shared.header.title")
+      .contacts
+        p = Setting.get('contacts.phone')
+        p = Setting.get('contacts.email')
+
     == yield

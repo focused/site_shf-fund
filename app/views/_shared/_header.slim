@@ -25,8 +25,7 @@ header
   .contacts
     a.phone href="tel:#{Setting.get('contacts.phone').try(:gsub, /\s|[()]/, '')}"
       = Setting.get('contacts.phone')
-    a.email href="mailto:#{Setting.get('contacts.email')}"
-      = Setting.get('contacts.email')
+    = mail_to Setting.get('contacts.email'), Setting.get('contacts.email'), class: "email"
 
   = render "catalog/menu"
 

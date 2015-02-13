@@ -7,9 +7,27 @@
 
       = render "_shared/links"
 
-.category_content
-  ul data-role="catalog_container"
-    = render @document.all_products
+- if @document.any_products?
+  .category_content
+    ul data-role="catalog_container"
+      = render @document.all_products
+
+- else
+  .content
+    p
+      | В данный момент товаров данной категории нет в наличии.
+      | Посмотрите, пожалуйста,
+      '
+      a href=root_path
+        | другие предметы офисного интерьера
+      | .
+
+    p
+      | Вы также можете отправить свой запрос по электронной почте
+      '
+      = mail_to Setting.get('contacts.email'), Setting.get('contacts.email')
+      '
+      | – мы с Вами свяжемся, как только появится предмет интерьера, аналогичный тому, что Вы ищите.
 
 
   .clear
@@ -19,4 +37,6 @@
       remote: true,
       method: "get",
       class: "more"
+
+
 
