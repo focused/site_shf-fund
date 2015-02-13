@@ -41,12 +41,17 @@
     - if client_order.order_items.any?
       a.btn href="" data-role="gen_specification"
         | Сохранить спецификацию >>
+      a.btn href="" data-role="clear"
+        | Очистить &times;
 
 
     .controls
-      /- if client_order.order_items.any?
-      p
-        | Заполните, пожалуйста, свои реквизиты для оформления заказа
+      - if client_order.errors.any?
+        p.error
+          | Заполните, пожалуйста, все поля для оформления заказа
+      - else
+        p
+          | Заполните, пожалуйста, свои реквизиты для оформления заказа
 
       .form
         = f.input :company_name, label: false, placeholder: Order.human_attribute_name(:company_name)

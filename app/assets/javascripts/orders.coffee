@@ -20,3 +20,13 @@ $ ->
     $form.submit()
     $form.attr "action", prev_action
     $form.attr "target", "_self"
+
+  $(".cart").on "click", "[data-role=clear]", (event) ->
+    event.preventDefault()
+
+    $form = $(this).parents "form"
+
+    prev_action = $form.attr "action"
+    $form.attr "action", "#{prev_action}?clear=true"
+    $form.submit()
+    $form.attr "action", prev_action
