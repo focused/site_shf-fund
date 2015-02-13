@@ -12,6 +12,14 @@
     ul data-role="catalog_container"
       = render @document.all_products
 
+    .clear
+    - if @document.has_more_products?
+      = button_to "Смотреть больше предложений",
+        catalog_product_category_path(0, path: params[:path], page: 1),
+        remote: true,
+        method: "get",
+        class: "more"
+
 - else
   .content
     p
@@ -30,13 +38,7 @@
       | – мы с Вами свяжемся, как только появится предмет интерьера, аналогичный тому, что Вы ищите.
 
 
-  .clear
-  - if @document.has_more_products?
-    = button_to "Смотреть больше предложений",
-      catalog_product_category_path(0, path: params[:path], page: 1),
-      remote: true,
-      method: "get",
-      class: "more"
+
 
 
 
