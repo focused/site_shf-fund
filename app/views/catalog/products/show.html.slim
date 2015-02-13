@@ -12,7 +12,7 @@
       h1 = x.name
 
       - if x.factory_url.present?
-        a.url href=x.factory_url
+        a.url href=x.factory_url target="_blank"
           = x.factory_url
 
       - @document.main_properties.each do |attribute_name, attribute|
