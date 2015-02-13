@@ -1,5 +1,5 @@
 .wrapper
-  a.item href=menu_item.path class=(@document.path =~ /#{menu_item.path}/ ? "active" : "")
+  a.item href=menu_item.path class=(@document.respond_to?(:path) && @document.path =~ /#{menu_item.path}/ ? "active" : "")
     = menu_item.name
   .submenu
     - menu_item.product_categories.each do |subitem|
