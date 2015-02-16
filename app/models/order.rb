@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
 
   has_many :order_items, -> { ordered }, dependent: :destroy
 
-  validates :name, :company_name, :phone, :email, :details_file, presence: true, if: -> x { x.real? }
+  validates :name, :phone, :email, presence: true, if: -> x { x.real? }
 
   def sum
     order_items

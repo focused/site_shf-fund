@@ -3,7 +3,11 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %w(update)
 
   def create
-    client_order.order_items << new_order_item
+    if (order_item = client_order.order_items.find_by(product_id: @product.id))
+      order_item.update!(count: order_item.count + 1)
+    else
+      client_order.order_items << new_order_item
+    end
 
     redirect_to cart_path
   end
