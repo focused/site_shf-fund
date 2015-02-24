@@ -12,6 +12,7 @@ class Product < ActiveRecord::Base
     join_table: "product_couples",
     association_foreign_key: "couple_id"
   has_many :product_photos, -> { ordered }, dependent: :destroy
+  has_many :order_items
 
   scope :all_products, -> category do
     where(product_category_id: [category.id, category.subcategory_ids].flatten)

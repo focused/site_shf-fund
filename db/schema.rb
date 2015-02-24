@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208150955) do
+ActiveRecord::Schema.define(version: 20150224194330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20150208150955) do
   add_index "slides", ["position"], name: "index_slides_on_position", using: :btree
 
   add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "products"
+  add_foreign_key "order_items", "products", on_delete: :nullify
   add_foreign_key "product_categories", "product_categories"
   add_foreign_key "product_photos", "products"
   add_foreign_key "products", "product_categories"
