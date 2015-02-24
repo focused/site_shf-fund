@@ -3,9 +3,9 @@ class ProductCategory < ActiveRecord::Base
 
   alias_attribute :parent_id, :product_category_id
 
-  has_many :products
   belongs_to :product_category
-  has_many :product_categories
+  has_many :product_categories, dependent: :destroy
+  has_many :products, dependent: :destroy
 
   validates :name, :path, presence: true
   validates :path, length: { maximum: 500 }, uniqueness: [:product_category]
