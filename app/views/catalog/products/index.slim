@@ -24,3 +24,6 @@
   - else
     p
       | По вашему запросу ничего не найдено.
+      - if params[:search] && (query = params[:search][:query]) && query.size < 3
+        '
+        | Введите не менее 3х символов.

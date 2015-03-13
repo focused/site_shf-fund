@@ -38,6 +38,7 @@ ru:
         product_category_id: Раздел каталога
         product_category: Раздел каталога
         product_couples: Сопутствующие товары
+        extra_categories: Сопутствующие разделы
         product_photos: Фотографии
         price: Цена (руб.)
         size: Размер
@@ -103,6 +104,7 @@ ru:
       show:
         add_to_cart: "Добавить в корзину >>"
         product_couples: Сопутствующие товары
+        product_extra_categories: Сопутствующие разделы
 
   order_items:
     index:

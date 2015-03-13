@@ -10,7 +10,7 @@
 - if @document.any_products?
   .category_content
     ul data-role="catalog_container"
-      = render @document.all_products
+      = render @document.all_products, custom_path: @document.custom_path
 
     .clear
     - if @document.has_more_products?

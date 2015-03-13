@@ -6,6 +6,13 @@ class ProductCategory < ActiveRecord::Base
   belongs_to :product_category
   has_many :product_categories, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_and_belongs_to_many :extra_products, -> { ordered },
+    class_name: "Product",
+    join_table: "extra_categories",
+    foreign_key: "extra_category_id"
+
+  scope :secondary, -> { where.not(product_category_id: nil) }
+  scope :without,   -> id { where.not(id: id) }
 
   validates :name, :path, presence: true
   validates :path, length: { maximum: 500 }, uniqueness: [:product_category]

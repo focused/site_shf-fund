@@ -12,7 +12,7 @@ module Catalog
     end
 
     def product
-      @product ||= category.products.find_by(path_id: path_id)
+      @product ||= category.extra_products.find_by(path_id: path_id)
     end
 
     def subcategories

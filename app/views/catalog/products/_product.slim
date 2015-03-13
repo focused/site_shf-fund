@@ -1,4 +1,4 @@
-- Catalog::ProductCard.(product) do |product, card|
+- Catalog::ProductCard.(product, defined?(custom_path) && custom_path) do |product, card|
   li
     a href=card.url
       span.title = product.name

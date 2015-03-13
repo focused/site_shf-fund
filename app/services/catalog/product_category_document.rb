@@ -18,6 +18,10 @@ module Catalog
       category.name
     end
 
+    def custom_path
+      parent_category && path
+    end
+
     def all_products(page = 0, size = 16)
       Product
         .all_products(category)

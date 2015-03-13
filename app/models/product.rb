@@ -7,6 +7,10 @@ class Product < ActiveRecord::Base
   before_validation :fill_defaults
 
   belongs_to :product_category
+  has_and_belongs_to_many :extra_categories, -> { ordered },
+    class_name: "ProductCategory",
+    join_table: "extra_categories",
+    association_foreign_key: "extra_category_id"
   has_and_belongs_to_many :product_couples, -> { ordered },
     class_name: "Product",
     join_table: "product_couples",
@@ -15,6 +19,8 @@ class Product < ActiveRecord::Base
   has_many :order_items
 
   scope :all_products, -> category do
+    return category.extra_products if category.parent_id
+
     where(product_category_id: [category.id, category.subcategory_ids].flatten)
   end
 

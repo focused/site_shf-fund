@@ -1,10 +1,10 @@
-.panel.panel-default data-role="product_couples_receiver"
+.panel.panel-default data-role="extra_categories_receiver"
   .panel-heading
     .panel-title
       = association.title
       '
       | (
-      span.size = association.value.count
+      span.size = association.value.without(@model.parent_id).count
       | )
 
       a.btn.btn-xs.btn-link.pull-right href="" data-role="reset"
@@ -17,14 +17,14 @@
         | Сохранить
 
 
-  = form_for @model, remote: true, data: { role: "product_couples_form" } do |f|
+  = form_for @model, remote: true, data: { role: "extra_categories_form" } do |f|
     .busy.hidden
       div
       i.fa.fa-cog.fa-spin.fa-2x
     .panel-body
-      = hidden_field_tag :current_couple_ids, @model.product_couple_ids.join(",")
-      = f.select :product_couple_ids,
-        options_from_collection_for_select(Product.all, :id, :name, @model.product_couple_ids),
+      = hidden_field_tag :current_category_ids, @model.extra_category_ids.join(",")
+      = f.select :extra_category_ids,
+        ProductCategory.secondary.without(@model.parent_id).map { |x| ["#{x.product_category.name} - #{x.name}", x.id] },
         {},
         multiple: true
 

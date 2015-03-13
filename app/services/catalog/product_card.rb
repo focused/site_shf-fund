@@ -1,16 +1,15 @@
 module Catalog
   module_function
 
-  ProductCard = Struct.new :product do
+  ProductCard = Struct.new :product, :path do
     include ProductBase
 
     def self.call(model, *args)
-      obj = new model, *args
-      yield model, obj
+      yield model, new(model, *args)
     end
 
     def url
-      "#{product_category_path}/#{product.path_id}"
+      "#{path ? path : product_category_path}/#{product.path_id}"
     end
 
     def preview_url

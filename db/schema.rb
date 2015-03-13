@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224203757) do
+ActiveRecord::Schema.define(version: 20150313125758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,9 +46,18 @@ ActiveRecord::Schema.define(version: 20150224203757) do
   add_index "documents", ["path"], name: "index_documents_on_path", using: :btree
   add_index "documents", ["position"], name: "index_documents_on_position", using: :btree
 
+  create_table "extra_categories", force: :cascade do |t|
+    t.integer "product_id",        null: false
+    t.integer "extra_category_id", null: false
+  end
+
+  add_index "extra_categories", ["product_id", "extra_category_id"], name: "index_extra_categories_on_product_id_and_extra_category_id", unique: true, using: :btree
+
   create_table "order_items", force: :cascade do |t|
     t.string   "name"
+    t.string   "code"
     t.decimal  "price",      precision: 8, scale: 2
+    t.decimal  "sum",        precision: 8, scale: 2
     t.integer  "product_id"
     t.integer  "count",                              default: 1, null: false
     t.datetime "created_at",                                     null: false
