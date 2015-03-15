@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   alias_attribute :parent_id, :product_category_id
 
   after_initialize :normalize
+  after_create :attach_extra_category
   before_validation :fill_defaults
 
   belongs_to :product_category
@@ -29,6 +30,8 @@ class Product < ActiveRecord::Base
   validates :wear_pct, numericality: { maximum: 99.99 }
   validates :price, numericality: { maximum: 999999.99 }
 
+  private
+
   def normalize
     self.product_category_id ||= parent_id
   end
@@ -37,4 +40,8 @@ class Product < ActiveRecord::Base
     self.path_id ||= id
   end
 
+  def attach_extra_category
+    # self.extra_categories << product_category
+    product_category.extra_products << self
+  end
 end
