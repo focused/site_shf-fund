@@ -121,6 +121,8 @@ ru:
     contacts:
       email: Контактный e-mail
       phone: Контактный телефон
+    site:
+      main_product_category: Раздел на главной
     social:
       links:
         vk: ВКонтакте - ссылка на страницу

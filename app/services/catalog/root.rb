@@ -1,10 +1,10 @@
 class Root
   def id
-    0
+    Setting.get("site.main_product_category").to_i
   end
 
   def subcategory_ids
-    ProductCategory.ordered.ids
+    ProductCategory.ordered.ids - [id]
   end
 
   def parent_id
