@@ -1,12 +1,30 @@
 module Catalog
   class ProductCategoryDocument < Document
-    def self.call(request_path)
-      model = ::Document.match(request_path.to_s, name)
+    class << self
+      def parents_join_sql
+        <<-Query
+        INNER JOIN product_categories AS parents
+        ON product_categories.product_category_id = parents.id
+        Query
+      end
 
-      return unless model && document = new(model, request_path)
-      return unless document.category
+      def category_order_sql
+        <<-Query
+        (CASE product_categories.product_category_id
+          WHEN #{::Root.main_category_id} THEN 0
+          ELSE 1
+        END)
+        Query
+      end
 
-      document
+      def call(request_path)
+        model = ::Document.match(request_path.to_s, name)
+
+        return unless model && document = new(model, request_path)
+        return unless document.category
+
+        document
+      end
     end
 
     def breadcrumbs
@@ -26,10 +44,10 @@ module Catalog
       Product
         .all_products(category)
         .joins(:product_category)
-        .order(
-          "product_categories.product_category_id != #{Root.main_category_id}",
-          "product_categories.position"
-        )
+        .joins(self.class.parents_join_sql)
+        .order(self.class.category_order_sql)
+        .order("parents.position")
+        .order("product_categories.position")
         .ordered
         .limit(size)
         .offset(page * size)
