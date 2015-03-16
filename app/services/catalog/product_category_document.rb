@@ -23,12 +23,22 @@ module Catalog
     end
 
     def all_products(page = 0, size = 16)
+      Rails.logger.ap "="*80
       Product
         .all_products(category)
-        .order(:product_category_id)
+        .joins(:product_category)
+        .order(
+          "product_categories.product_category_id != #{Root.main_category_id}",
+          "product_categories.position"
+        )
         .ordered
         .limit(size)
         .offset(page * size)
+        # .select(
+        #   "products.*",
+        #   "product_categories.id",
+        #   "product_categories.position"
+        # )
     end
 
     def any_products?

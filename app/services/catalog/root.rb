@@ -10,7 +10,7 @@ class Root
   end
 
   def subcategory_ids
-    [main_category.product_categories.ids] #+ ProductCategory.ordered.ids
+    [main_category.product_categories.ids] + ProductCategory.ordered.ids
   end
 
   def parent_id
