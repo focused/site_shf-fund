@@ -23,7 +23,6 @@ module Catalog
     end
 
     def all_products(page = 0, size = 16)
-      Rails.logger.ap "="*80
       Product
         .all_products(category)
         .joins(:product_category)
