@@ -4,7 +4,7 @@ class Setting < ActiveRecord::Base
   alias_attribute :parent_id, :position
 
   validates :key, presence: true
-  validates :key, :value, length: { maximum: 255 }
+  validates :key, length: { maximum: 255 }
 
   class << self
     def get(key)
